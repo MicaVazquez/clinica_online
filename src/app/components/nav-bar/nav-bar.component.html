@@ -1,0 +1,20 @@
+<header class="navbar">
+  <img src="logo-clinica.png" alt="Logo Clínica" class="logo" />
+  <h1>Clinica Online</h1>
+  <nav>
+    <ul>
+      @if(!this.email) {
+      <li (click)="redirigir('bienvenida')">
+        <a>Inicio</a>
+      </li>
+
+      <li (click)="redirigir('login')"><a>Iniciar sesión</a></li>
+      <li (click)="redirigir('register')"><a>Registro</a></li>
+      }@else {
+      <li>{{ this.email }}</li>
+      <li (click)="logout()"><a>Cerrar sesión</a></li>
+
+      }
+    </ul>
+  </nav>
+</header>

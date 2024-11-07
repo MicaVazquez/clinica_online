@@ -1,0 +1,25 @@
+<div class="container">
+  <!-- INICIO DE LA TABLA -->
+  <table>
+    <!-- INICIO DE LA CABECERA -->
+    <thead>
+      <tr>
+        Obras Sociales
+      </tr>
+    </thead>
+    <!-- FIN DE LA CABECERA -->
+
+    <!-- INICIO DEL CUERPO -->
+    <tbody>
+      <tr
+        *ngFor="let obra of obrasSociales; let idx = index"
+        [ngClass]="{ 'table-active': rowClicked == idx }"
+        (click)="onClickRow(obra.nombre, idx)"
+      >
+        <td [ngClass]="{ highlight: rowClicked == idx }">{{ obra.nombre }}</td>
+      </tr>
+    </tbody>
+    <!-- FIN DEL CUERPO -->
+  </table>
+  <!-- FIN DE LA TABLA -->
+</div>

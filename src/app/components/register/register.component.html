@@ -1,0 +1,46 @@
+<div class="div_body">
+  <div id="registrarse_container">
+    <div id="registrarse_card_container" name="form_card" class="cristal_card">
+      <div id="registrarse_title_container" name="form_card_title">
+        <i
+          *ngIf="tipo_usuario"
+          class="fa-solid fa-arrow-left"
+          (click)="SeleccionarTipo('')"
+        ></i>
+
+        <!-- <div id="registrarse_title">
+          Registrarse
+          <button pButton class="p-button-secondary" routerLink="/login">
+            Ya tengo una cuenta
+          </button>
+        </div> -->
+      </div>
+
+      <div id="registrarse_content">
+        <div *ngIf="!tipo_usuario" id="select_tipousuario_container">
+          <div
+            id="boton_registrar_paciente"
+            class="cristal_card option-card"
+            (click)="SeleccionarTipo('paciente')"
+          >
+            <img src="/paciente.avif" class="option-image" />
+            <span class="option-text">Paciente</span>
+          </div>
+          <div
+            id="boton_registrar_especialista"
+            class="cristal_card option-card"
+            (click)="SeleccionarTipo('especialista')"
+          >
+            <img src="/especialista.avif" class="option-image" />
+            <span class="option-text">Especialista</span>
+          </div>
+        </div>
+        <app-form-paciente *ngIf="tipo_usuario === 'paciente'">
+        </app-form-paciente>
+        <app-form-especialista
+          *ngIf="tipo_usuario === 'especialista'"
+        ></app-form-especialista>
+      </div>
+    </div>
+  </div>
+</div>

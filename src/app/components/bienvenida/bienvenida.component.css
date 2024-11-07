@@ -1,0 +1,116 @@
+.welcome-card {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #3f51b5; /* Color primario de Angular Material */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+button {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+div-body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #0a2e49;
+}
+
+.welcome-section {
+  text-align: center;
+}
+
+.main-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #0a2e49;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.description {
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 1000px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.shadow-sm {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rounded {
+  border-radius: 8px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gallery-item {
+  width: 200px; /* Ajusta este valor al tamaño deseado */
+  height: 200px; /* Ajusta este valor al tamaño deseado */
+  overflow: hidden; /* Oculta cualquier exceso de imagen */
+}
+
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Escala la imagen para cubrir completamente el contenedor, manteniendo la proporción */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,129 @@
+.div-container-register {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.title-formulario {
+  font-family: "Galivanted";
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.div-volver {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+}
+
+.card {
+  background-color: darkslategrey;
+}
+
+/* INICIO DE MODIFICAION DEL SPINNER */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mat-progress-spinner {
+  width: 80px;
+  height: 80px;
+}
+/* FIN DE MODIFICAION DEL SPINNER */
+
+/* INICIO DE MOD DEL BOTON PARA VOLVER Y REGISTRARSE*/
+.btn-volver {
+  position: relative;
+  width: auto; /* Cambiar a auto para ajustar automáticamente el ancho */
+  padding: 0 20px; /* Ajustar el padding para darle espacio interno */
+  height: 45px;
+  background: linear-gradient(#3c58b9, #5a84d7, #3c58b9);
+  border: 2px solid #c9daf4;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 15px;
+  margin-left: 0; /* Asegura que no haya margen a la izquierda */
+}
+
+.btn-volver::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#3c58b9, #5a84d7, #3c58b9);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.btn-volver:hover::before {
+  top: 0;
+}
+
+.btn-registrarse {
+  position: relative;
+  width: 50%;
+  height: 45px;
+  background: linear-gradient(#3c58b9, #5a84d7, #3c58b9);
+  border: 2px solid #c9daf4;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 15px;
+  margin: 0 auto;
+}
+
+.btn-registrarse::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#3c58b9, #5a84d7, #3c58b9);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.btn-registrarse:hover::before {
+  top: 0;
+}
+/* FIN DE MOD DEL BOTON PARA VOLVER Y REGISTRARSE*/
+
+/* INICIO DE MODIFICAICON DEL FORMULARIO */
+.label-form {
+  font-family: "Quenda";
+  color: white;
+  font-size: 20px;
+}
+/* FIN DE MODIFICAICON DEL FORMULARIO */

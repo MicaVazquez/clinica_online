@@ -1,0 +1,43 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #3c58b9;
+  border: 1px solid #ddd;
+  color: white;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  color: white;
+  background: #3c58b9;
+}
+
+th {
+  background: #3c58b9;
+}
+
+.highlight {
+  background-color: #1ea150; /* Cambia este color al que prefieras */
+}
+/* FIN DE MODIFICACION DE LA TABLA */
+
+/* INICIO DE MODIFICACION DEL BOTON */
+.btn {
+  width: 100%;
+  height: 45px;
+  background-color: #3c58b9; /* Color sólido de fondo */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s; /* Transición suave para el color */
+  margin-bottom: 15px;
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.btn:hover {
+  background-color: #5a84d7; /* Cambio de color en hover */
+}

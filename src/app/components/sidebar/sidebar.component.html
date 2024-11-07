@@ -1,0 +1,53 @@
+<mat-tab-group>
+  <!-- Volver -->
+
+  <!-- Especialistas -->
+  <mat-tab label="Especialistas">
+    <div (click)="opcion('especialista')" class="tab-content">
+      <i class="fa fa-user-md fa-2x"></i>
+      <span>Especialistas</span>
+    </div>
+  </mat-tab>
+
+  <!-- Pacientes -->
+  <mat-tab label="Pacientes">
+    <div (click)="opcion('paciente')" class="tab-content">
+      <i class="fa fa-user fa-2x"></i>
+      <span>Pacientes</span>
+    </div>
+  </mat-tab>
+
+  <!-- Estadísticas -->
+  <mat-tab label="Estadísticas">
+    <div (click)="opcion('estadisticas')" class="tab-content">
+      <i class="fa fa-line-chart fa-2x"></i>
+      <span>Estadísticas</span>
+    </div>
+  </mat-tab>
+
+  <!-- Administradores -->
+  <mat-tab label="Administradores">
+    <div (click)="opcion('admin')" class="tab-content">
+      <i class="fa fa-user fa-2x"></i>
+      <span>Administradores</span>
+    </div>
+  </mat-tab>
+
+  <!-- Dar Turno -->
+  <mat-tab label="Dar Turno">
+    <div (click)="opcion('solicitar-turno')" class="tab-content">
+      <i class="fa fa-calendar fa-2x"></i>
+      <span>Dar Turno</span>
+    </div>
+  </mat-tab>
+
+  <!-- Ver Turnos -->
+  <mat-tab label="Ver Turnos">
+    <div (click)="opcion('turnos')" class="tab-content">
+      <i class="fa fa-calendar fa-2x"></i>
+      <span>Ver Turnos</span>
+    </div>
+  </mat-tab>
+
+  <!-- Logout -->
+</mat-tab-group>

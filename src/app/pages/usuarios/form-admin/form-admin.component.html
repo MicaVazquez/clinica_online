@@ -1,0 +1,138 @@
+<div class="div-container-register">
+  <!-- INICIO DEL CONTAINER PARA LOS FORMULARIOS -->
+  <div class="row mb-3">
+    <div class="card mb-4 rounded-3 shadow-sm text-white">
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label for="nombre" class="label-form">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="Ingrese nombre"
+              formControlName="nombre"
+            />
+            <span *ngIf="isValidField('nombre')" class="form-text text-danger">
+              {{ getFieldError("nombre") }}
+            </span>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="apellido" class="label-form">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              placeholder="Ingrese apellido"
+              formControlName="apellido"
+            />
+            <span
+              *ngIf="isValidField('apellido')"
+              class="form-text text-danger"
+            >
+              {{ getFieldError("apellido") }}
+            </span>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="dni" class="label-form">DNI</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dni"
+              placeholder="Ingrese dni"
+              formControlName="dni"
+            />
+            <span *ngIf="isValidField('dni')" class="form-text text-danger">
+              {{ getFieldError("dni") }}
+            </span>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="edad" class="label-form">Edad</label>
+            <input
+              type="text"
+              class="form-control"
+              id="edad"
+              placeholder="Ingrese edad"
+              formControlName="edad"
+            />
+            <span *ngIf="isValidField('edad')" class="form-text text-danger">
+              {{ getFieldError("edad") }}
+            </span>
+          </div>
+
+          <div class="col-12">
+            <hr class="my-4" />
+            <label for="email" class="label-form">E-Mail</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Ingrese email"
+              formControlName="email"
+            />
+            <span *ngIf="isValidField('email')" class="form-text text-danger">
+              {{ getFieldError("email") }}
+            </span>
+          </div>
+
+          <div class="col-12">
+            <label for="password" class="label-form">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Ingrese contraseña"
+              formControlName="password"
+            />
+            <span
+              *ngIf="isValidField('password')"
+              class="form-text text-danger"
+            >
+              {{ getFieldError("password") }}
+            </span>
+          </div>
+
+          <div class="col-6">
+            <label for="imagen1" class="label-form">Foto de perfil</label>
+            <input
+              type="file"
+              class="form-control"
+              id="imagen1"
+              formControlName="imagen1"
+              (change)="uploadImage($event)"
+            />
+            <span *ngIf="isValidField('imagen1')" class="form-text text-danger">
+              Debe cargar la foto de perfil
+            </span>
+          </div>
+          <!-- INICIO DEL BOTON PARA REGISTRARSE -->
+          <hr class="my-4" />
+          <button class="btn-registrarse" type="submit">
+            Registrar Administrador
+          </button>
+          <!-- FIN DEL BOTON PARA REGISTRARSE -->
+        </div>
+        <br />
+      </form>
+    </div>
+  </div>
+  <!-- FIN DEL CONTAINER PARA LOS FORMULARIOS -->
+
+  <!-- INICIO DEL SPINNER -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <!-- <mat-progress-spinner
+      mode="indeterminate"
+      diameter="80"
+      color="primary"
+    ></mat-progress-spinner> -->
+  </div>
+  <!-- FIN DEL SPINNER -->
+</div>

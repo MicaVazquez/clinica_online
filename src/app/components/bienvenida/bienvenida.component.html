@@ -1,0 +1,33 @@
+<div class="div-body">
+  <section class="welcome-section">
+    <img src="bienvenida.jpg" alt="Imagen de la clínica" class="main-image" />
+    <div class="buttons">
+      <button (click)="redirigir('register')">Registro</button>
+      <button (click)="redirigir('login')">Login</button>
+    </div>
+  </section>
+
+  <!-- Descripción de la clínica -->
+  <section class="description text-center">
+    <h2>La Clínica Online: Tu salud en manos expertas</h2>
+    <p>
+      En La Clínica Online, somos especialistas en brindarte la mejor atención
+      para que encuentres tu bienestar. Contamos con 6 consultorios equipados,
+      dos laboratorios, y una cómoda sala de espera. Nuestros profesionales, que
+      abarcan diversas especialidades, están aquí para acompañarte y atenderte
+      con dedicación y experiencia.
+    </p>
+    <p></p>
+  </section>
+
+  <!-- Conoce nuestro centro -->
+
+  <div class="gallery-container text-center my-5">
+    <h2>Conocé nuestro centro</h2>
+    <div class="gallery-grid">
+      <div *ngFor="let imagen of imagenesCentro" class="gallery-item">
+        <img [src]="imagen.url" alt="Centro" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</div>

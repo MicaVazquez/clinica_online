@@ -1,0 +1,10 @@
+.tab-content {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.tab-content i,
+.tab-content img {
+  margin-right: 10px;
+}

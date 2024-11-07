@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="tbodyDiv">
+    <table
+      class="table table-bordered text-center contenedorFilas table-hover text-dark"
+    >
+      <thead class="sticky-top table-light hv50">
+        <tr>
+          <th>Especialidades</th>
+        </tr>
+      </thead>
+      <tbody class="table-dark">
+        <tr
+          *ngFor="let esp of especialidades; let idx = index"
+          [ngClass]="rowsClicked.includes(idx) ? 'table-active' : ''"
+          (click)="onClickRow(esp.nombre, idx)"
+        >
+          <td>{{ esp.nombre }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr class="my-4" />
+<button class="btn btn-primary mb-2" (click)="addEspecialidad()">
+  Agregar Especialidad
+</button>
+
+<input
+  type="text"
+  class="form-control"
+  id="especialidad"
+  placeholder="Nombre de especialidad"
+  #especialidadInput
+/>
+<span *ngIf="error" class="form-text text-danger">
+  Ya existe esa especialidad.
+</span>

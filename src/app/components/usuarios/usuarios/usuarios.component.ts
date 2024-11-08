@@ -3,11 +3,11 @@ import { SidebarComponent } from '../../sidebar/sidebar.component';
 import { Admin } from '../../../interfaces/admin';
 import { AuthService } from '../../../services/auth.service';
 import { NgIf } from '@angular/common';
-import { AdministradoresComponent } from '../../administradores/administradores.component';
+import { FormAdminComponent } from '../../../pages/usuarios/form-admin/form-admin.component';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [NgIf, SidebarComponent, AdministradoresComponent],
+  imports: [NgIf, SidebarComponent, FormAdminComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
 })
@@ -32,7 +32,10 @@ export class UsuariosComponent {
       });
     });
   }
-
+  handleSalida(selector: string) {
+    console.log('Selector recibido del hijo:', selector);
+    // Aquí puedes ejecutar lógica adicional o navegación según el valor recibido
+  }
   /**
    * Para navegar por
    * las rutas dependiendo

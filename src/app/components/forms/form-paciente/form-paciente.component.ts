@@ -68,7 +68,6 @@ export class FormPacienteComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       imagen1: ['', [Validators.required]],
       imagen2: ['', [Validators.required]],
-      // recaptcha: ['', Validators.required],
     });
 
     this.form.reset();
@@ -116,6 +115,7 @@ export class FormPacienteComponent {
     this.archivo2 = foto.target.files[0];
   }
   onSubmit() {
+    console.log(this.form.value);
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       console.log('invalid form');
@@ -200,11 +200,11 @@ export class FormPacienteComponent {
         background: 'antiquewhite', //-->Color de fondo
         timer: 1000,
       }).then(() => {
-        // this.authService.logOut();
+        this.authService.logout();
         // this.registrationSuccess.emit(true);
       });
     } catch (error) {
-      console.error('Error during patient registration:', error);
+      console.error('Error en el registro:', error);
     } finally {
       //-->Ocultar el spinner en caso de error
       this.isLoading = false;

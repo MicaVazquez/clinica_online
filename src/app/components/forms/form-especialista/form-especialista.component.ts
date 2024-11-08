@@ -55,13 +55,13 @@ export class FormEspecialistaComponent {
       edad: ['', [Validators.required, Validators.min(18), Validators.max(65)]],
       dni: [
         '',
-        [Validators.required, Validators.minLength(7), Validators.maxLength(8)],
+        [Validators.required, Validators.minLength(8), Validators.maxLength(8)],
       ],
       especialidad: this.fb.array([], [Validators.required]),
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       img: ['', [Validators.required]],
-      recaptcha: ['', Validators.required],
+      // recaptcha: ['', Validators.required],
     });
   }
   get especialidad() {
@@ -104,7 +104,7 @@ export class FormEspecialistaComponent {
     return null;
   }
   onSubmit(): void {
-    if (this.form.invalid || this.captchaComponent.captchaSolved == false) {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       console.log('invalid form');
       this.captcha = '';

@@ -170,7 +170,7 @@ export class LoginComponent {
     );
     console.log('Especialista #1: ', this.especialista1);
     this.especialista2 = especialistas.find(
-      (esp1: any) => esp1.data.email === 'mikaela.vzqz@gmail.com'
+      (esp1: any) => esp1.data.email === 'xafale6976@cironex.com'
     );
     console.log('Especialista #2: ', this.especialista2);
 
@@ -181,7 +181,7 @@ export class LoginComponent {
     console.log('Paciente #1: ', this.paciente1);
 
     this.paciente2 = pacientes.find(
-      (pac: any) => pac.data.email === 'dejiti1445@gianes.com'
+      (pac: any) => pac.data.email === 'toveto4528@edectus.com'
       //contraseña123456
     );
     console.log('Paciente #2: ', this.paciente2);

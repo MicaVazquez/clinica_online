@@ -15,11 +15,6 @@ export class SidebarComponent {
 
   constructor(private router: Router, private auth: AuthService) {}
 
-  /**
-   *
-   * @param selector A donde quiera
-   * ir.
-   */
   opcion(selector: string) {
     this.salida.emit(selector);
   }

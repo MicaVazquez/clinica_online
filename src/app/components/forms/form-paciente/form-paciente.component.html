@@ -1,140 +1,183 @@
-<main class="registro-container">
-  <!-- INICIO DEL CONTAINER PARA LOS FORMULARIOS -->
-  <div class="registro-form">
-    <h2>Formulario paciente</h2>
-    <form
-      [formGroup]="form"
-      (ngSubmit)="onSubmit()"
-      class="needs-validation"
-      novalidate
+<main>
+  <div class="row justify-content-between m-4">
+    <div class="card-form col-md-6 col-lg-7 h-100 p-5 text-white rounded-3">
+      <!-- <h2>Formulario Paciente</h2> -->
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="needs-validation"
+        novalidate
+      >
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label for="nombre" class="label-form">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              placeholder="Ingrese nombre"
+              formControlName="nombre"
+            />
+            <span *ngIf="isValidField('nombre')" class="form-text text-danger">
+              {{ getFieldError("nombre") }}
+            </span>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="apellido" class="label-form">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              placeholder="Ingrese apellido"
+              formControlName="apellido"
+            />
+            <span
+              *ngIf="isValidField('apellido')"
+              class="form-text text-danger"
+            >
+              {{ getFieldError("apellido") }}
+            </span>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="dni" class="label-form">DNI</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dni"
+              placeholder="Ingrese dni"
+              formControlName="dni"
+            />
+            <span *ngIf="isValidField('dni')" class="form-text text-danger">
+              {{ getFieldError("dni") }}
+            </span>
+          </div>
+
+          <div class="col-sm-6">
+            <label for="edad" class="label-form">Edad</label>
+            <input
+              type="text"
+              class="form-control"
+              id="edad"
+              placeholder="Ingrese edad"
+              formControlName="edad"
+            />
+            <span *ngIf="isValidField('edad')" class="form-text text-danger">
+              {{ getFieldError("edad") }}
+            </span>
+          </div>
+
+          <div class="col-12">
+            <hr class="my-4" />
+            <label for="email" class="label-form">E-Mail</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Ingrese email"
+              formControlName="email"
+            />
+            <span *ngIf="isValidField('email')" class="form-text text-danger">
+              {{ getFieldError("email") }}
+            </span>
+          </div>
+
+          <div class="col-12">
+            <label for="password" class="label-form">Contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Ingrese contraseña"
+              formControlName="password"
+            />
+            <span
+              *ngIf="isValidField('password')"
+              class="form-text text-danger"
+            >
+              {{ getFieldError("password") }}
+            </span>
+          </div>
+
+          <div class="col-6">
+            <label for="imagen1" class="label-form">Foto de perfil</label>
+            <input
+              type="file"
+              class="form-control"
+              id="imagen1"
+              formControlName="imagen1"
+              (change)="uploadImageUno($event)"
+            />
+            <span *ngIf="isValidField('imagen1')" class="form-text text-danger">
+              Debe cargar la foto de perfil
+            </span>
+          </div>
+          <div class="col-6">
+            <label for="imagen2" class="label-form"
+              >Imagen de la Credencial</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="imagen2"
+              formControlName="imagen2"
+              (change)="uploadImageDos($event)"
+            />
+            <span *ngIf="isValidField('imagen2')" class="form-text text-danger">
+              Debe cargar la credencial
+            </span>
+          </div>
+          <hr class="my-4" />
+
+          <!-- INICIO DEL CAPTCHA -->
+          <!-- <div class="col-md-12">
+            <ngx-recaptcha2
+              #captchaElem
+              [siteKey]="siteKey"
+              (success)="handleSuccess($event)"
+              [useGlobalDomain]="false"
+              formControlName="recaptcha"
+            >
+            </ngx-recaptcha2>
+            <span
+              *ngIf="isValidField('recaptcha')"
+              class="form-text text-danger"
+            >
+              Debe de cargar el captcha.
+            </span>
+          </div> -->
+          <!-- FIN DEL CAPTCHA -->
+
+          <!-- INICIO DEL BOTON PARA REGISTRARSE -->
+          <button class="btn-registrarse" type="submit">Registrarse</button>
+          <!-- FIN DEL BOTON PARA REGISTRARSE -->
+        </div>
+      </form>
+    </div>
+    <!-- INICIO PARA MOSTRAR LA TABLA CON LAS OBRAS SOCIALES -->
+    <div
+      class="card-obra-social col-md-3 col-lg-4 h-100 p-5 text-center text-white rounded-3"
     >
-      <div class="row g-3">
-        <div class="col-sm-6">
-          <label for="nombre" class="label-form">Nombre</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nombre"
-            placeholder="Ingrese nombre"
-            formControlName="nombre"
-          />
-          <span *ngIf="isValidField('nombre')" class="form-text text-danger">
-            {{ getFieldError("nombre") }}
-          </span>
-        </div>
-
-        <div class="col-sm-6">
-          <label for="apellido" class="label-form">Apellido</label>
-          <input
-            type="text"
-            class="form-control"
-            id="apellido"
-            placeholder="Ingrese apellido"
-            formControlName="apellido"
-          />
-          <span *ngIf="isValidField('apellido')" class="form-text text-danger">
-            {{ getFieldError("apellido") }}
-          </span>
-        </div>
-
-        <div class="col-sm-6">
-          <label for="dni" class="label-form">DNI</label>
-          <input
-            type="text"
-            class="form-control"
-            id="dni"
-            placeholder="Ingrese dni"
-            formControlName="dni"
-          />
-          <span *ngIf="isValidField('dni')" class="form-text text-danger">
-            {{ getFieldError("dni") }}
-          </span>
-        </div>
-
-        <div class="col-sm-6">
-          <label for="edad" class="label-form">Edad</label>
-          <input
-            type="text"
-            class="form-control"
-            id="edad"
-            placeholder="Ingrese edad"
-            formControlName="edad"
-          />
-          <span *ngIf="isValidField('edad')" class="form-text text-danger">
-            {{ getFieldError("edad") }}
-          </span>
-        </div>
-
-        <div class="col-12">
-          <label for="email" class="label-form">E-Mail</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Ingrese email"
-            formControlName="email"
-          />
-          <span *ngIf="isValidField('email')" class="form-text text-danger">
-            {{ getFieldError("email") }}
-          </span>
-        </div>
-
-        <div class="col-12">
-          <label for="password" class="label-form">Contraseña</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            placeholder="Ingrese contraseña"
-            formControlName="password"
-          />
-          <span *ngIf="isValidField('password')" class="form-text text-danger">
-            {{ getFieldError("password") }}
-          </span>
-        </div>
-
-        <div class="col-6">
-          <label for="imagen1" class="label-form">Foto de perfil</label>
-          <input
-            type="file"
-            class="form-control"
-            id="imagen1"
-            formControlName="imagen1"
-            (change)="uploadImageUno($event)"
-          />
-          <span *ngIf="isValidField('imagen1')" class="form-text text-danger">
-            Debe cargar la foto de perfil
-          </span>
-        </div>
-        <div class="col-6">
-          <label for="imagen2" class="label-form"
-            >Imagen de la Credencial</label
-          >
-          <input
-            type="file"
-            class="form-control"
-            id="imagen2"
-            formControlName="imagen2"
-            (change)="uploadImageDos($event)"
-          />
-          <span *ngIf="isValidField('imagen2')" class="form-text text-danger">
-            Debe cargar la credencial
-          </span>
-        </div>
-
-        <button class="btn-registrarse" type="submit">Registrarse</button>
-      </div>
-    </form>
+      <h4 class="mb-3">Seleccione una Obra Social</h4>
+      <span *ngIf="isValidField('obra')" class="form-text text-danger">
+        {{ getFieldError("obra") }}
+      </span>
+      <!-- <app-tabla-obras (obras)="getObra($event)"></app-tabla-obras> -->
+      <app-tabla-obra-social (obras)="getObra($event)"></app-tabla-obra-social>
+    </div>
+    <!-- FIN PARA MOSTRAR LA TABLA CON LAS OBRAS SOCIALES -->
   </div>
-
-  <!-- INICIO PARA MOSTRAR LA TABLA CON LAS OBRAS SOCIALES -->
-  <div class="registro-info">
-    <h4 class="mb-3">Seleccione una Obra Social</h4>
-    <span *ngIf="isValidField('obra')" class="form-text text-danger">
-      {{ getFieldError("obra") }}
-    </span>
-    <app-tabla-obra-social (obras)="getObra($event)"></app-tabla-obra-social>
-  </div>
-  <!-- FIN PARA MOSTRAR LA TABLA CON LAS OBRAS SOCIALES -->
   <!-- FIN DEL CONTAINER PARA LOS FORMULARIOS -->
+
+  <!-- INICIO DEL SPINNER -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <!-- <mat-progress-spinner
+      mode="indeterminate"
+      diameter="80"
+      color="primary"
+    ></mat-progress-spinner> -->
+  </div>
+  <!-- FIN DEL SPINNER -->
 </main>
+<br /><br />

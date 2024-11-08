@@ -40,10 +40,10 @@ export class FormAdminComponent {
     this.form = this.fb.group({
       nombre: ['', [Validators.required]],
       apellido: ['', [Validators.required]],
-      edad: ['', [Validators.required, Validators.min(18), Validators.max(65)]],
+      edad: ['', [Validators.required, Validators.min(18), Validators.max(99)]],
       dni: [
         '',
-        [Validators.required, Validators.minLength(7), Validators.maxLength(8)],
+        [Validators.required, Validators.minLength(8), Validators.maxLength(8)],
       ],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],

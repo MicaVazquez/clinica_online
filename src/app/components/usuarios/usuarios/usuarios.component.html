@@ -10,7 +10,9 @@
           <div class="btn-group me-2"></div>
         </div>
       </div>
-
+      <!-- INICIO DEL SIDEBAR -->
+      <!-- <app-sidebar (salida)="getSelect($event)"></app-sidebar> -->
+      <!-- FIN DEL SIDEBAR -->
       <!-- INICIO PARA MOSTRAR INFO DEL USUARIO ADMINISTRADOR -->
       <div *ngIf="select == 'usuarios'">
         <main>
@@ -51,6 +53,7 @@
           </div>
         </main>
       </div>
+      <app-form-admin></app-form-admin>
       <!-- FIN PARA MOSTRAR INFO DEL USUARIO -->
 
       <!-- INICIO PARA VER LOS OTROS COMPONENTS -->
@@ -74,7 +77,4 @@
       <!-- FIN PARA VER LOS OTROS COMPONENTS -->
     </main>
   </div>
-  <!-- INICIO DEL SIDEBAR -->
-  <app-sidebar (salida)="getSelect($event)"></app-sidebar>
-  <!-- FIN DEL SIDEBAR -->
 </div>

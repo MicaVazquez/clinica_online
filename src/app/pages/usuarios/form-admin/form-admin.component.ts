@@ -116,8 +116,6 @@ export class FormAdminComponent {
   async onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      console.log('invalid form');
-      return;
     }
 
     this.admin = this.form.value;

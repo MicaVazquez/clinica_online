@@ -4,18 +4,28 @@ import { Admin } from '../../../interfaces/admin';
 import { AuthService } from '../../../services/auth.service';
 import { NgIf } from '@angular/common';
 import { FormAdminComponent } from '../../../pages/usuarios/form-admin/form-admin.component';
+import { FormEspecialistaComponent } from '../../forms/form-especialista/form-especialista.component';
+import { EspecialistasComponent } from '../especialistas/especialistas.component';
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [NgIf, SidebarComponent, FormAdminComponent],
+  imports: [
+    NgIf,
+    SidebarComponent,
+    FormAdminComponent,
+    FormEspecialistaComponent,
+    EspecialistasComponent,
+  ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
 })
 export class UsuariosComponent {
   public select: string = 'usuarios';
   public admin!: Admin;
+  showFormAdmin: boolean = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   /**
    * En el OnInit cargo
@@ -46,5 +56,13 @@ export class UsuariosComponent {
   getSelect($event: string) {
     this.select = $event;
     console.log(this.select);
+  }
+
+  goTo(rute: string) {
+    this.router.navigateByUrl('usuarios/' + rute);
+  }
+
+  onAddAdmin() {
+    this.showFormAdmin = !this.showFormAdmin;
   }
 }

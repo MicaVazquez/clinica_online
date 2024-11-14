@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-//angulqar material
+import { Input } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +22,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent {
+  @Input() public rol: string = ''; //-->Para pasarle el rol,
+  public activeRol!: string;
   constructor(private router: Router, private authSrv: AuthService) {}
 
   email!: any;
@@ -45,5 +47,8 @@ export class NavBarComponent {
         console.log('No hay usuario autenticado');
       }
     });
+  }
+  getRol(rol: string) {
+    this.activeRol = rol;
   }
 }

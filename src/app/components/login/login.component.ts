@@ -16,6 +16,8 @@ import { CurrentUserService } from '../../services/current-user.service';
 import { EspecialistaService } from '../../services/especialista.service';
 import { PacienteService } from '../../services/paciente.service';
 import { AdminService } from '../../services/admin.service';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -26,6 +28,7 @@ import { AdminService } from '../../services/admin.service';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -61,8 +64,6 @@ export class LoginComponent {
     this.fastLogin();
   }
   onLogin() {
-    this.isLoading = true;
-
     this.usuario = {
       email: this.formLogin.controls['usuario'].value,
       clave: this.formLogin.controls['clave'].value,
@@ -170,7 +171,7 @@ export class LoginComponent {
     );
     console.log('Especialista #1: ', this.especialista1);
     this.especialista2 = especialistas.find(
-      (esp1: any) => esp1.data.email === 'xafale6976@cironex.com'
+      (esp1: any) => esp1.data.email === 'vacisoh869@edectus.com'
     );
     console.log('Especialista #2: ', this.especialista2);
 
@@ -187,7 +188,7 @@ export class LoginComponent {
     console.log('Paciente #2: ', this.paciente2);
 
     this.paciente3 = pacientes.find(
-      (pac: any) => pac.data.email === 'hagad17623@cironex.com'
+      (pac: any) => pac.data.email === 'mojeko8215@edectus.com'
     ); //67891011
     console.log('Paciente #3: ', this.paciente3);
 
@@ -215,7 +216,7 @@ export class LoginComponent {
   onFastLoginPaciente3() {
     if (this.paciente3) {
       this.formLogin.controls['usuario'].setValue(this.paciente3.data.email);
-      this.formLogin.controls['clave'].setValue('67891011');
+      this.formLogin.controls['clave'].setValue('123456');
     } else {
       console.error('Paciente no encontrado');
     }

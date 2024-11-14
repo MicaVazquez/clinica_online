@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Especialidad } from '../interfaces/especialidad';
+import { Observable } from 'rxjs';
 import {
   Firestore,
   addDoc,
@@ -32,5 +33,18 @@ export class EspecialidadService {
       });
     });
     return unsubscribe;
+  }
+  traer(): Observable<Especialidad[]> {
+    const q = query(collection(this.firestore, 'especialidades'));
+    return new Observable<Especialidad[]>((observer) => {
+      onSnapshot(q, (snapshot) => {
+        const especialidades: Especialidad[] = [];
+        snapshot.docChanges().forEach((change) => {
+          const one = change.doc.data() as Especialidad;
+          especialidades.push(one);
+        });
+        observer.next(especialidades);
+      });
+    });
   }
 }

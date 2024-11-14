@@ -13,7 +13,7 @@ import { StorageService } from '../../../services/storage.service';
 import { PacienteService } from '../../../services/paciente.service';
 import { NgIf } from '@angular/common';
 import { TablaObraSocialComponent } from '../../tables/tabla-obra-social/tabla-obra-social.component';
-
+import { Output, EventEmitter } from '@angular/core';
 export interface Usuario {
   email: string;
   clave: string;
@@ -37,6 +37,7 @@ export interface Paciente {
   styleUrl: './form-paciente.component.css',
 })
 export class FormPacienteComponent {
+  @Output() registrationSuccess = new EventEmitter<boolean>();
   private paciente: Paciente | undefined;
   private usuario!: Usuario;
   private archivo1: any;
@@ -201,7 +202,7 @@ export class FormPacienteComponent {
         timer: 1000,
       }).then(() => {
         this.authService.logout();
-        // this.registrationSuccess.emit(true);
+        this.registrationSuccess.emit(true);
       });
     } catch (error) {
       console.error('Error en el registro:', error);

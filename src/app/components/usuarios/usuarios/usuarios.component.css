@@ -63,3 +63,40 @@ hr {
     max-width: 100%;
   }
 }
+
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #2a3663;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.btn {
+  width: 30%;
+  height: 45px;
+  background-color: #5a84d7;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+}
+.div-botones:hover {
+  background-color: #0b1d60 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.div-botones {
+  background-color: #dff5ff;
+
+  color: #0b1d60;
+}
+
+.div-botones > i {
+  color: white;
+}

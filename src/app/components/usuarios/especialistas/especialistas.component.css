@@ -1,0 +1,106 @@
+/* Estilo simplificado para .card */
+.card {
+  background-color: #e3eaf7;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón principal */
+.btn-habilitado {
+  width: 100%;
+  height: 45px;
+  background-color: #3c58b9;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.btn-habilitado:hover {
+  background-color: #2d47a1;
+}
+
+/* Variantes de color */
+.btn-habilitado-si {
+  background-color: #e53935;
+}
+
+.btn-habilitado-si:hover {
+  background-color: #d32f2f;
+}
+
+.btn-habilitado-no {
+  background-color: #388e3c;
+}
+
+.btn-habilitado-no:hover {
+  background-color: #2e7d32;
+}
+
+/* Botón auxiliar */
+.btn {
+  width: 30%;
+  height: 45px;
+  background-color: #5a84d7;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.btn:hover {
+  background-color: #4a73c2;
+}
+
+.titulo-especialistas {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30px; /* Espacio arriba del título */
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+/* Estilo para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+td img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Estilo para las filas */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* FIN PARA EL CONTAINER DEL TEXTO */
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #2a3663;
+  min-height: 100vh;
+  padding: 20px;
+}

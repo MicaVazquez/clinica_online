@@ -1,0 +1,32 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+nav ul {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 5px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-6 {
+  text-align: center;
+  padding: 10px;
+  margin: 5px 0;
+}

@@ -1,0 +1,87 @@
+<div class="container" *ngIf="jornada">
+  <div>
+    <nav aria-label="Jornada Semanal">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeSelect('lunes')"
+            [ngClass]="selected === 'lunes' ? 'active' : ''"
+            >Lunes</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeSelect('martes')"
+            [ngClass]="selected === 'martes' ? 'active' : ''"
+            >Martes</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeSelect('miercoles')"
+            [ngClass]="selected === 'miercoles' ? 'active' : ''"
+            >Miércoles</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeSelect('jueves')"
+            [ngClass]="selected === 'jueves' ? 'active' : ''"
+            >Jueves</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeSelect('viernes')"
+            [ngClass]="selected === 'viernes' ? 'active' : ''"
+            >Viernes</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeSelect('sabado')"
+            [ngClass]="selected === 'sabado' ? 'active' : ''"
+            >Sábado</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="py-3">
+    <div *ngIf="jornada.dias[selected].length > 0; else elseBlock">
+      <div *ngFor="let horario of jornada.dias[selected]">
+        <div class="row">
+          <div class="col-6 border border-primary rounded-start">
+            {{ horario.hora }}
+          </div>
+          <div class="col-6 border border-primary rounded-end">
+            Consultorio: {{ horario.nroConsultorio }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      <span>No tiene horarios en este día</span>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #elseBlock2>
+  <span>No tiene ningún horario cargado!</span>
+</ng-template>
+
+<!-- INICIO DEL SPINNER -->
+<div *ngIf="isLoading" class="spinner-overlay">
+  <mat-progress-spinner
+    mode="indeterminate"
+    diameter="80"
+    color="primary"
+  ></mat-progress-spinner>
+</div>

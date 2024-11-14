@@ -62,4 +62,9 @@ export class EspecialistaService {
     });
     return array;
   }
+  updateEspecialista(especialista: Especialista): void {
+    if (especialista === null) return;
+    const docs = doc(this.dataRef, especialista.idDoc);
+    updateDoc(docs, { active: especialista.active });
+  }
 }

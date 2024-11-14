@@ -1,0 +1,23 @@
+/* INICIO MODIFICACION DE ELEMENTOS DE LA CARD */
+.img-perfil-usuario {
+  width: 130px;
+  height: 130px;
+  border-radius: 150px;
+  border: 10px solid #0b1d60;
+}
+
+.card {
+  background-color: #0a2e49; /* Color de fondo azul suave */
+  border: none;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: aliceblue;
+}
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #0b1d60;
+  min-height: 100vh;
+  padding: 20px;
+}

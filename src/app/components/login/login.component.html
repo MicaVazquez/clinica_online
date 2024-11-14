@@ -2,8 +2,16 @@
   <div class="div-informacion login">
     <h2>Acceso Rápido</h2>
     <!-- INICIO DE LOS FAST LOGIN -->
-    <p>Administrador</p>
-    <div class="fast-login">
+    <div *ngIf="isLoading" class="spinner-overlay">
+      <mat-progress-spinner
+        mode="indeterminate"
+        diameter="80"
+        color="primary"
+      ></mat-progress-spinner>
+    </div>
+
+    <div class="fast-login" *ngIf="!isLoading">
+      <p>Administrador</p>
       <!-- INICIO DEL BOTON DE ADMINISTRADOR -->
       <button
         type="submit"

@@ -1,0 +1,53 @@
+<div class="container" *ngIf="pacientes">
+  <div class="btn-volver">
+    <button mat-button (click)="goTo()">
+      <mat-icon>arrow_back</mat-icon> Volver
+    </button>
+  </div>
+  <h2 class="titulo-especialistas">Pacientes</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Credencial</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Edad</th>
+        <th>Email</th>
+        <th>Obra Social</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of pacientes">
+        <td>
+          <img src="{{ paciente.img1 }}" alt="img-esp" width="50" height="50" />
+        </td>
+        <td>
+          <img src="{{ paciente.img2 }}" alt="img-esp" width="50" height="50" />
+        </td>
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.apellido }}</td>
+        <td>{{ paciente.dni }}</td>
+        <td>{{ paciente.edad }}</td>
+        <td>{{ paciente.email }}</td>
+        <td>{{ paciente.obraSocial }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="pacientes?.length === 0">
+  <p>No hay pacientes para mostrar.</p>
+</div>
+
+<div class="div-btn" *ngIf="showPacientes">
+  <app-form-paciente
+    *ngIf="showFormComponent"
+    (registrationSuccess)="onRegistrationSuccess($event)"
+  ></app-form-paciente>
+  <button class="btn" (click)="onAddPacienteAdmin()">
+    {{ showFormComponent ? "Cerrar" : "Dar de Alta Paciente" }}
+  </button>
+</div>
+<br />

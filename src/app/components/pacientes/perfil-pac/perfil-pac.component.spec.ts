@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdministradoresComponent } from './administradores.component';
+import { PerfilPacComponent } from './perfil-pac.component';
 
-describe('AdministradoresComponent', () => {
-  let component: AdministradoresComponent;
-  let fixture: ComponentFixture<AdministradoresComponent>;
+describe('PerfilPacComponent', () => {
+  let component: PerfilPacComponent;
+  let fixture: ComponentFixture<PerfilPacComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdministradoresComponent]
+      imports: [PerfilPacComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdministradoresComponent);
+    fixture = TestBed.createComponent(PerfilPacComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

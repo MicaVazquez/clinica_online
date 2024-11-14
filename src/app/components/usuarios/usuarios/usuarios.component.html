@@ -10,6 +10,31 @@
           <div class="btn-group me-2"></div>
         </div>
       </div>
+
+      <div class="row justify-content-evenly mt-5">
+        <div
+          class="div-botones col-10 col-md-3 col-xl-3 p-5 mb-4 rounded-3 border border-4"
+          (click)="goTo('especialistas')"
+        >
+          <i class="fa fa-calendar fa-2x"></i>
+          Especialistas
+        </div>
+
+        <div
+          class="div-botones col-10 col-md-3 col-xl-3 p-5 mb-4 rounded-3 border border-4 div-botones"
+          (click)="goTo('pacientes')"
+        >
+          <i class="fa fa-user fa-2x"></i>
+          Pacientes
+        </div>
+        <!-- <div
+          class="div-botones col-10 col-md-3 col-xl-3 p-5 mb-4 rounded-3 border border-4 div-botones"
+          (click)="goTo('solicitar-turno')"
+        >
+          <i class="fa fa-user fa-2x"></i>
+          Solicitar turno
+        </div> -->
+      </div>
       <!-- INICIO DEL SIDEBAR -->
       <!-- <app-sidebar (salida)="getSelect($event)"></app-sidebar> -->
       <!-- FIN DEL SIDEBAR -->
@@ -53,28 +78,13 @@
           </div>
         </main>
       </div>
-      <app-form-admin></app-form-admin>
-      <!-- FIN PARA MOSTRAR INFO DEL USUARIO -->
-
-      <!-- INICIO PARA VER LOS OTROS COMPONENTS -->
-      <div *ngIf="select == 'especialista'">
-        <!-- <app-especialistas></app-especialistas> -->
+      <div class="div-btn">
+        <app-form-admin *ngIf="showFormAdmin"></app-form-admin>
+        <button class="btn" (click)="onAddAdmin()">
+          {{ showFormAdmin ? "Cerrar" : "Dar de Alta Admin" }}
+        </button>
       </div>
-      <div *ngIf="select == 'paciente'">
-        <!-- <app-pacientes></app-pacientes> -->
-      </div>
-
-      <div *ngIf="select == 'admin'"></div>
-      <div *ngIf="select == 'solicitar-turno'">
-        <!-- <app-solicitar-turno-admin></app-solicitar-turno-admin> -->
-      </div>
-      <div *ngIf="select == 'turnos'">
-        <!-- <app-turnos></app-turnos> -->
-      </div>
-      <div *ngIf="select == 'estadisticas'">
-        <!-- <app-estadisticas></app-estadisticas> -->
-      </div>
-      <!-- FIN PARA VER LOS OTROS COMPONENTS -->
+      <br />
     </main>
   </div>
 </div>

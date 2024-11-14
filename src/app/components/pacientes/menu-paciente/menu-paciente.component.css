@@ -1,0 +1,78 @@
+main {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 110vh;
+}
+
+p {
+  font-size: 20px;
+  color: white;
+}
+
+/* .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+  } */
+
+.div-botones:hover {
+  background-color: #0b1d60 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.div-botones {
+  background-color: #dff5ff;
+
+  color: #0b1d60;
+}
+
+.div-botones > i {
+  color: white;
+}
+
+/* INICIO DE MODIFICACION DE CONTAINER & IMAGEN */
+.container-img {
+  width: 100%;
+  height: 70vh;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* FIN DE MODIFICACION DE CONTAINER & IMAGEN */
+
+/* INICIO PARA EL CONTAINER DEL TEXTO */
+.container-texto {
+  text-align: left;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semitransparencia de fondo */
+  color: #fff;
+}
+
+/* Estilos para el texto */
+.container-texto h2 {
+  font-size: 40px; /* Ajusta el tamaño de la fuente */
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.container-texto p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+/* FIN PARA EL CONTAINER DEL TEXTO */
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #2e073f;
+  min-height: 100vh;
+  padding: 20px;
+}

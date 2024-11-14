@@ -1,0 +1,63 @@
+<main>
+  <div class="container py-4">
+    <div class="btn-volver">
+      <button mat-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </button>
+    </div>
+    <!-- INICIO DEL HEADER -->
+    <header class="pb-3 mb-4 border-bottom">
+      <h2 class="d-flex align-items-center">Información de Usuario</h2>
+    </header>
+    <!-- FIN DEL HEADER -->
+
+    <!-- INICIO DEL CONTENEDOR -->
+    <div class="row align-items-md-stretch" *ngIf="paciente">
+      <!-- INICIO DEL CONTENEDOR DE LA INFORMACION DEL USUARIO -->
+      <div class="col-12 col-xl-6">
+        <div class="h-100 p-5 text-white card">
+          <!-- INICIO DE MOSTRAR NOMBRE E IMAGEN -->
+          <div
+            class="row justify-content-evenly text-center align-items-center"
+          >
+            <div class="col-6">
+              <h5>{{ paciente.nombre }} {{ paciente.apellido }}</h5>
+            </div>
+            <div class="col-6">
+              <img
+                class="img-perfil-usuario"
+                src="{{ paciente.img1 }}"
+                alt="img-perfil"
+              />
+            </div>
+          </div>
+          <!-- FIN DE MOSTRAR NOMBRE E IMAGEN -->
+          <hr />
+          <!-- INICIO DE MOSTRAR OTRA INFORMACION -->
+          <div style="margin-left: 5px">
+            <h5>DNI: {{ paciente.dni.toString() }}</h5>
+            <h5>Edad: {{ paciente.edad }}</h5>
+            <h5>Email: {{ paciente.email }}</h5>
+          </div>
+          <!-- FIN DE MOSTRAR OTRA INFORMACION -->
+        </div>
+      </div>
+      <!-- FIN DEL CONTENEDOR DE LA INFORMACION DEL USUARIO -->
+
+      <!-- INICIO DEL COMPONENTE PARA VER MI HISOTRIOAL CLINICO -->
+      <!-- <div class="col-12 col-xl-6">
+        <div class="h-100 p-5 rounded-3">
+          <h2>Historial Clinico</h2>
+          <hr />
+          <div class="container text-center">
+            <app-mi-historial-clinico
+              [paciente]="paciente"
+            ></app-mi-historial-clinico>
+          </div>
+        </div>
+      </div> -->
+      <!-- INICIO DEL COMPONENTE PARA VER MI HISOTRIOAL CLINICO -->
+    </div>
+    <!-- INICIO DEL CONTENEDOR -->
+  </div>
+</main>

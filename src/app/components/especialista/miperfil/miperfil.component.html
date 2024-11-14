@@ -1,0 +1,72 @@
+<main>
+  <!-- INICIO DEL CONTENEDOR DEL PERFIL -->
+  <div class="container py-4">
+    <div class="btn-volver">
+      <button mat-button (click)="goBack('')">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </button>
+    </div>
+    <!-- INICIO DEL HEADER -->
+    <header class="pb-3 mb-4 border-bottom">
+      <h2 class="d-flex align-items-center">Información del Especialista</h2>
+    </header>
+    <!-- FIN DEL HEADER -->
+
+    <div class="row align-items-md-stretch" *ngIf="especialista">
+      <!-- INICIO DE LA INFORMACION DEL ESPECIALISTA -->
+      <div class="col-12 col-xl-6">
+        <div class="h-100 p-5 rounded-3">
+          <div class="card row justify-content-evenly text-center">
+            <div class="col-6">
+              <img
+                class="img-perfil-usuario"
+                src="{{ especialista.img }}"
+                alt="img-especialista"
+              />
+            </div>
+            <hr />
+
+            <h4>
+              {{ especialista.nombre | doctor }} {{ especialista.apellido }}
+            </h4>
+            <h5>DNI: {{ especialista.dni.toString() | formatoDni }}</h5>
+            <h5>Email: {{ especialista.email }}</h5>
+            <h5>Edad: {{ especialista.edad }}</h5>
+            <h5>Especialidades:</h5>
+            <h6 *ngFor="let esp of especialista.especialidad">{{ esp }}</h6>
+            <hr />
+          </div>
+        </div>
+      </div>
+      <!-- FIN DE LA INFORMACION DEL ESPECIALISTA -->
+
+      <!-- INICIO DE LA VISUALIZACION DE 'MIS HORARIOS' ESPECIALISTA -->
+      <div class="col-12 col-xl-6">
+        <div class="h-100 p-5 rounded-3">
+          <h2>Jornada de Trabajo</h2>
+          <hr />
+          <!-- INICIO DE MOSTRAR APP MIS HORARIOS -->
+          <div class="container text-center">
+            <app-jornada></app-jornada>
+          </div>
+          <div class="text-center">
+            <button
+              class="btn btn-outline-success mx-5"
+              type="button"
+              (click)="goTo('/especialista/mis-horarios', 'agregar')"
+            >
+              Agregar
+            </button>
+            <!-- <button class="btn btn-outline-primary mx-5" type="button"
+                          (click)="goTo('/especialista/mis-horarios','editar')">
+                          Modificar
+                      </button> -->
+          </div>
+          <!-- FIN DE MOSTRAR APP MIS HORARIOS -->
+        </div>
+      </div>
+      <!-- FIN DE LA VISUALIZACION DE 'MIS HORARIOS' ESPECIALISTA -->
+    </div>
+  </div>
+  <!-- FIN DEL CONTENEDOR DEL PERFIL -->
+</main>

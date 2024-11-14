@@ -18,14 +18,16 @@ import { NgIf } from '@angular/common';
 import { TablaEspecialidadComponent } from '../../tables/tabla-especialidad/tabla-especialidad.component';
 import { RecaptchaModule, RecaptchaV3Module } from 'ng-recaptcha-2';
 import { CaptchaPropioComponent } from '../../captcha-propio/captcha-propio.component';
+import { Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-form-especialista',
   standalone: true,
   imports: [
+    TablaEspecialidadComponent,
     ReactiveFormsModule,
     NgIf,
-    TablaEspecialidadComponent,
     RecaptchaModule,
     RecaptchaV3Module,
     CaptchaPropioComponent,
@@ -40,6 +42,8 @@ export class FormEspecialistaComponent {
   private user!: Usuario;
   private file: any;
   public form: FormGroup;
+  @Output() registrationSuccess = new EventEmitter<boolean>();
+  @Input() isAdmin: boolean = false;
   @ViewChild('captcha') captchaComponent!: CaptchaPropioComponent;
   constructor(
     private fb: FormBuilder,

@@ -1,0 +1,78 @@
+<main>
+  <div class="container" *ngIf="especialistas">
+    <div class="btn-volver">
+      <button mat-button (click)="goTo()">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </button>
+    </div>
+    <!-- Título de la sección -->
+    <h2 class="titulo-especialistas">Especialistas</h2>
+
+    <!-- Tabla con la lista de especialistas -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>DNI</th>
+          <th>Edad</th>
+          <th>Email</th>
+          <th>Especialidades</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- INICIO DE RECORRER EL ARRAY DE ESPECIALISTAS -->
+        <tr *ngFor="let especialista of especialistas">
+          <td>
+            <img
+              src="{{ especialista.img }}"
+              alt="img-esp"
+              width="50"
+              height="50"
+            />
+          </td>
+          <td>{{ especialista.nombre }} {{ especialista.apellido }}</td>
+          <td>{{ especialista.dni }}</td>
+          <td>{{ especialista.edad }}</td>
+          <td>{{ especialista.email }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let especialidad of especialista.especialidad">
+                <strong>{{ especialidad }}</strong>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button
+              class="btn-habilitado"
+              ngClass="{{
+                especialista.active ? 'btn-habilitado-no' : 'btn-habilitado-si'
+              }}"
+              (click)="onActivarEspecialista(especialista)"
+            >
+              {{ especialista.active ? "Deshabilitar" : "Habilitar" }}
+            </button>
+          </td>
+        </tr>
+        <!-- FIN DE RECORRER EL ARRAY DE ESPECIALISTAS -->
+      </tbody>
+    </table>
+  </div>
+  <hr />
+
+  <!-- INICIO DEL BOTON PARA DAR EL ALTA DEL ESPECIALISTA -->
+  <div class="div-btn">
+    <app-form-especialista
+      [isAdmin]="true"
+      *ngIf="showFormComponent"
+      (registrationSuccess)="onRegistrationSuccess($event)"
+    ></app-form-especialista>
+    <br />
+    <button class="btn" (click)="onAddEspecialistaAdmin()">
+      {{ showFormComponent ? "Cerrar" : "Dar de Alta Especialista" }}
+    </button>
+  </div>
+  <br />
+  <!-- FIN DEL BOTON PARA DAR EL ALTA DEL ESPECIALISTA -->
+</main>

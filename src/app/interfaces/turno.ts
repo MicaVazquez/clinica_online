@@ -1,17 +1,22 @@
 import { Horario } from './jornada';
 
 export interface Turno {
+  //-->Sobre el turno en si
   horario: Horario;
+  id: string;
   fecha: string;
-  pacienteEmail: string;
-  especialistaEmail: string;
+  emailPaciente: string;
+  emailEspecialista: string;
   especialidad: string;
   estado: string;
-  id: string;
-  reseña: string;
+
+  //-->Encuesta
   calificacion: string;
   encuesta: string[];
-  historial: boolean;
+  resenia: string;
+
+  //-->Historial
+  historialClinico: boolean; //--->Para saber si tiene un historioal
 }
 
 export interface DiaAtencion {

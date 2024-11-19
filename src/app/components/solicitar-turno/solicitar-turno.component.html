@@ -1,228 +1,171 @@
 <main>
-  <!-- INICIO DEL BOTON PARA VOLVER PARA ATRAS EN CASO DE EQUIVOCARSE -->
-  <div class="div-volver">
-    <button
-      class="btn-volver btn-sm btn-outline-secondary mb-3 mt-5 mx-5"
-      (click)="onReset()"
-    >
-      Atras
-    </button>
-  </div>
-  <!-- FIN DEL BOTON PARA VOLVER PARA ATRAS EN CASO DE EQUIVOCARSE -->
-
-  <!-- INICIO DEL CONTENEDOR DE SOLICITAR UN TURNO -->
   <div class="container py-4">
-    <!-- INICIO DE SELECCIONAR UN PACIENTE (SI INGRESA COMO ADMINISTRADOR) -->
-    <div *ngIf="isAdministrador">
-      <div *ngIf="pacientes && !pacienteSelect">
-        <h1>Pacientes</h1>
-        <div class="row">
-          <div
-            class="card-paciente col-12 col-xl-3 border border-3 border-secondary div-paciente"
-            (click)="setPaciente(paciente)"
-            *ngFor="let paciente of pacientes"
-          >
-            <div class="row justify-content-evenly mt-2">
-              <div class="col-6">
-                <h5 class="pt-3">
-                  {{ paciente.apellido }}, {{ paciente.nombre }}
-                </h5>
-              </div>
-              <div class="col-2 mx-2">
-                <img
-                  class="rounded-5 mt-3"
-                  style="width: 60px; height: 60px"
-                  src="{{ paciente.img1 }}"
-                  alt="img-paciente"
-                />
-              </div>
-            </div>
-            <hr />
-            <h5 class="mx-2">DNI: {{ paciente.dni }}</h5>
-            <h5 class="mx-2">Email: {{ paciente.email }}</h5>
-            <h5 class="mx-2">Obra Social: {{ paciente.obraSocial }}</h5>
-          </div>
-        </div>
-      </div>
+    <div class="div-volver">
+      <button
+        class="btn-volver btn-sm btn-outline-secondary mb-3 mt-5 mx-5"
+        (click)="onReset()"
+      >
+        Atras
+      </button>
     </div>
-    <!-- FIN DE SELECCIONAR UN PACIENTE (SI INGRESA COMO ADMINISTRADOR) -->
 
-    <!-- INICIO DE SELECCIONAR UN ESPECIALISTA -->
-    <div
-      *ngIf="
-        isAdministrador
-          ? pacienteSelect && especialistaSelect === null
-          : especialistaSelect === null
-      "
-    >
-      <h1>Especialistas</h1>
+    <!-- INICIO MOSTRAR ESPECILIDADES-->
+    <div *ngIf="!especialidadSelect">
+      <h1 class="text-center">Especialidades</h1>
       <hr />
-      <div class="row">
-        <div
-          class="col-12 col-xl-3 text-dark text-center mt-5 mb-5"
-          (click)="setEspecialista(esp)"
-          *ngFor="let esp of especialistas"
-        >
-          <!-- UTILIZO UNA PIPE PARA AGREGAR DR. AL ESPECIALISTA -->
-          <h4 class="pt-4">{{ esp.nombre | doctor }} {{ esp.apellido }}</h4>
-          <!-- UTILIZO UNA PIPE PARA AGREGAR DR. AL ESPECIALISTA -->
-          <div class="row justify-content-evenly mt-2">
-            <div class="col-12" appBtnCircularEsp>
-              <img src="{{ esp.img }}" class="imgRedonda" alt="imgDoc" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- FIN DE SELECCIONAR UN ESPECIALISTA -->
-
-    <div *ngIf="especialistaSelect !== null && especialidadSelect === ''">
-      <h1>
-        Especialidades de {{ especialistaSelect.nombre }}
-        {{ especialistaSelect.apellido }}
-      </h1>
-      <hr />
-      <div class="row">
-        <div
-          class="col-2 text-light text-center mx-2 mb-5 align-items-center"
-          (click)="setEspecialidad(especialidad.nombre)"
-          *ngFor="let especialidad of especialidadesDisponibles"
-          title="{{ especialidad.nombre }}"
-          data-placement="bottom"
-          appBtnCuadradoEspecialidad
+      <div class="row justify-content-center">
+        <button
+          class="btn-rectangular mx-2 mb-4"
+          *ngFor="let esp of especialidades"
+          (click)="setEspecialidad(esp.nombre)"
+          [attr.title]="esp.nombre"
         >
           <img
-            src="{{
-              especialidad.img ? especialidad.img : 'assets/def-icon.png'
-            }}"
-            class="img-especialidad"
-            alt="logo{{ especialidad.nombre }}"
-            appNotImage
+            [src]="esp.img ? esp.img : 'imagen1.jpg'"
+            class="rectangular-image"
+            [alt]="'Imagen de ' + esp.nombre"
           />
-          <!-- <img appNotImage src="{{especialidad.img}}"
-                alt="logo{{especialidad.nombre}}" class="img-especialidad"> -->
-        </div>
-        <br />
-      </div>
-      <hr />
-
-      <div *ngIf="especialidadesDisponibles.length == 0">
-        <div class="bg-primary text-dark rounded-3 py-4 text-center">
-          <h3>No tiene especialidades disponibles.</h3>
-        </div>
+        </button>
       </div>
     </div>
-
-    <!-- INICIO PARA MOSTRAR LOS TURNOS -->
-    <div class="row justify-content-evenly" *ngIf="turnosDisponibles !== null">
-      <!-- INICIO DE MOSTRAR ESPECIALISTA Y ESPECIALIDADES -->
-      <div class="row justify-content-evenly mb-5">
-        <div class="col-5 border border-3 border-secondary">
-          <div class="row justify-content-evenly mt-2">
-            <div class="col-6">
-              <h4 class="pt-3 mt-5">
-                Dr. {{ especialistaSelect?.apellido }},
-                {{ especialistaSelect?.nombre }}
-              </h4>
-            </div>
-            <div
-              class="col-6 border border-3 border-secondary"
-              appBtnCircularEsp
-            >
+  </div>
+  <!-- FIN MOSTRAR ESPECILIDADES-->
+  <!-- INICIO MOSTRAR ESPECIALISTAS -->
+  <div *ngIf="especialidadSelect !== '' && especialistaSelect === null">
+    <h1 class="text-capitalize">Especialistas de {{ especialidadSelect }}</h1>
+    <div class="row">
+      <div
+        class="col-12 col-xl-3 text-dark text-center mt-5 mb-5"
+        (click)="setEspecialista(esp)"
+        *ngFor="let esp of especialistasDisponibles"
+      >
+        <div class="card text-center border-0 shadow-lg">
+          <div class="card-body p-0">
+            <!-- Imagen del especialista -->
+            <div class="img-container mb-3">
               <img
-                class="imgRedonda"
-                src="{{ especialistaSelect?.img }}"
-                alt="img-especialista"
+                [src]="esp.img ? esp.img : 'imagen-default.jpg'"
+                alt="imgDoc"
+                class="img-fluid rounded-3 w-100"
               />
             </div>
-            <hr />
-            <h5 class="mx-2">Especialidades:</h5>
-            <div
-              *ngFor="let especialidad of especialistaSelect!.especialidad"
-              class="mx-5 text-center"
-            >
-              <h6>{{ especialidad }}</h6>
-            </div>
+            <!-- Nombre del especialista -->
+            <h4 class="pt-3 text-capitalize">
+              Dr. {{ esp.nombre }} {{ esp.apellido }}
+            </h4>
           </div>
         </div>
       </div>
-      <!-- FIN DE MOSTRAR ESPECIALISTA Y ESPECIALIDADES -->
+    </div>
+    <div *ngIf="especialistasDisponibles.length === 0">
+      <div class="bg-primary text-dark rounded-3 py-4 text-center">
+        <h3>No hay especialistas disponibles.</h3>
+      </div>
+    </div>
+  </div>
+  <!-- FIN MOSTRAR ESPECIALISTAS -->
+  <!-- INICIO PARA MOSTRAR LOS TURNOS -->
+  <div class="row justify-content-evenly" *ngIf="turnosDisponibles !== null">
+    <!-- INICIO DE MOSTRAR ESPECIALISTA Y ESPECIALIDADES -->
+    <div class="row justify-content-evenly mb-5">
+      <div class="col-5 border border-3 border-secondary">
+        <div class="row justify-content-evenly mt-2">
+          <div class="col-6">
+            <h4 class="pt-3 mt-5">
+              Dr. {{ especialistaSelect?.apellido }},
+              {{ especialistaSelect?.nombre }}
+            </h4>
+          </div>
+          <div class="col-6 border border-3 border-secondary" appBtnCircularEsp>
+            <img
+              class="imgRedonda"
+              src="{{ especialistaSelect?.img }}"
+              alt="img-especialista"
+            />
+          </div>
+          <hr />
+          <h5 class="mx-2">Especialidades:</h5>
+          <div
+            *ngFor="let especialidad of especialistaSelect!.especialidad"
+            class="mx-5 text-center"
+          >
+            <h6>{{ especialidad }}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIN DE MOSTRAR ESPECIALISTA Y ESPECIALIDADES -->
 
-      <!-- INICIO PARA MOSTRAR LOS DIAS -->
-      <div *ngIf="diaSelect == null">
-        <div class="row justify-content-between">
-          <ng-container
-            *ngFor="let elemento of turnosDisponibles; let i = index"
+    <!-- INICIO PARA MOSTRAR LOS DIAS -->
+    <div *ngIf="diaSelect == null">
+      <div class="row justify-content-between">
+        <ng-container *ngFor="let elemento of turnosDisponibles; let i = index">
+          <div
+            class="col-3 col-xl-3 py-1"
+            *ngIf="getElementFromArray(turnosDisponibles, i).length > 0"
           >
             <div
-              class="col-3 col-xl-3 py-1"
-              *ngIf="getElementFromArray(turnosDisponibles, i).length > 0"
+              class="div-horarios rounded-3 text-center py-5"
+              (click)="getFechaTurno(elemento, i, elemento.dia)"
+              appBorderFocusHorario
             >
-              <div
-                class="div-horarios rounded-3 text-center py-5"
-                (click)="getFechaTurno(elemento, i, elemento.dia)"
-                appBorderFocusHorario
-              >
-                <!-- <h4>{{elemento.dia}} - {{ getFecha(turnosDisponibles, i) }}</h4> -->
-                <h4>{{ getFecha(turnosDisponibles, i) }}</h4>
-              </div>
+              <!-- <h4>{{elemento.dia}} - {{ getFecha(turnosDisponibles, i) }}</h4> -->
+              <h4>{{ getFecha(turnosDisponibles, i) }}</h4>
             </div>
-          </ng-container>
-        </div>
+          </div>
+        </ng-container>
       </div>
+    </div>
 
-      <div *ngIf="checkIfArrayEmpty(turnosDisponibles)">
-        <div class="div-horarios rounded-3 py-4 text-center">
-          <h3>No hay horarios disponibles.</h3>
-        </div>
+    <div *ngIf="checkIfArrayEmpty(turnosDisponibles)">
+      <div class="div-horarios rounded-3 py-4 text-center">
+        <h3>No hay horarios disponibles.</h3>
       </div>
-      <!-- FIN PARA MOSTRAR LOS DIAS -->
+    </div>
+    <!-- FIN PARA MOSTRAR LOS DIAS -->
 
-      <!-- INICIO SI HA SELECCIONADO UN DIA GENERO EL TURNO -->
-      <div class="container py-2" *ngIf="diaSelect != null">
-        <div class="col-12 rounded-3 text-center py-2">
-          <h3 class="pt-3 pb-3">
-            {{ diaNombreSelect }} -
-            {{ getFecha(turnosDisponibles, indexSelect) }}
-          </h3>
-        </div>
-        <div
-          class="row justify-content-evenly mt-2 mb-2"
-          *ngFor="
-            let horario of getElementFromArray(turnosDisponibles, indexSelect)
+    <!-- INICIO SI HA SELECCIONADO UN DIA GENERO EL TURNO -->
+    <div class="container py-2" *ngIf="diaSelect != null">
+      <div class="col-12 rounded-3 text-center py-2">
+        <h3 class="pt-3 pb-3">
+          {{ diaNombreSelect }} - {{ getFecha(turnosDisponibles, indexSelect) }}
+        </h3>
+      </div>
+      <div
+        class="row justify-content-evenly mt-2 mb-2"
+        *ngFor="
+          let horario of getElementFromArray(turnosDisponibles, indexSelect)
+        "
+      >
+        <button
+          (click)="
+            onGenerarTurno(
+              getKeyByIndex(turnosDisponibles, indexSelect),
+              horario
+            )
+          "
+          class="btn col-8 mb-1 fw-bold"
+          [ngClass]="
+            horario.disponible
+              ? 'btn-outline-primary'
+              : 'btn-outline-secondary disabled'
           "
         >
-          <button
-            (click)="
-              onGenerarTurno(
-                getKeyByIndex(turnosDisponibles, indexSelect),
-                horario
-              )
-            "
-            class="btn col-8 mb-1 fw-bold"
-            [ngClass]="
-              horario.disponible
-                ? 'btn-outline-primary'
-                : 'btn-outline-secondary disabled'
-            "
-          >
-            {{ horario.horario.hora | horaFormato }}
-          </button>
-        </div>
+          {{ horario.horario.hora | horaFormato }}
+        </button>
       </div>
-      <!-- FIN SI HA SELECCIONADO UN DIA GENERO EL TURNO -->
     </div>
-    <!-- FIN PARA MOSTRAR LOS TURNOS -->
-
-    <!-- INICIO DEL SPINNER DE CARGA -->
-    <div *ngIf="isLoading" class="spinner-overlay">
-      <mat-progress-spinner
-        mode="indeterminate"
-        diameter="80"
-        color="primary"
-      ></mat-progress-spinner>
-    </div>
-    <!-- FIN DEL SPINNER DE CARGA -->
+    <!-- FIN SI HA SELECCIONADO UN DIA GENERO EL TURNO -->
   </div>
-  <!-- FIN DEL CONTENEDOR DE SOLICITAR UN TURNO -->
+  <!-- FIN PARA MOSTRAR LOS TURNOS -->
+
+  <!-- INICIO DEL SPINNER DE CARGA -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <mat-progress-spinner
+      mode="indeterminate"
+      diameter="80"
+      color="primary"
+    ></mat-progress-spinner>
+  </div>
+  <!-- FIN DEL SPINNER DE CARGA -->
 </main>

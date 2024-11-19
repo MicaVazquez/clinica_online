@@ -17,6 +17,7 @@ import { HoraFormatoPipe } from '../../pipees/hora-formato.pipe';
 
 import Swal from 'sweetalert2';
 import { DoctorPipe } from '../../pipes/doctor.pipe';
+import { StorageService } from '../../services/storage.service';
 @Component({
   selector: 'app-solicitar-turno',
   standalone: true,
@@ -65,7 +66,8 @@ export class SolicitarTurnoComponent {
     private jornadaService: JornadaService,
     private turnoService: TurnoService,
     private cronogramaService: CronogramaService,
-    private pacienteService: PacienteService
+    private pacienteService: PacienteService,
+    private storageSrv: StorageService
   ) {}
 
   ngOnInit(): void {
@@ -101,12 +103,21 @@ export class SolicitarTurnoComponent {
    * @param especialidad La especialidad
    * seleccionada por el usuario.
    */
+  // setEspecialidad(especialidad: string): void {
+  //   this.isLoading = true;
+  //   setTimeout(() => {
+  //     this.especialidadSelect = especialidad;
+  //     console.log('Especialidad seleccionada: ', this.especialidadSelect);
+  //     this.loadTurnos();
+  //     this.isLoading = false;
+  //   }, 1000);
+  // }
   setEspecialidad(especialidad: string): void {
     this.isLoading = true;
     setTimeout(() => {
       this.especialidadSelect = especialidad;
       console.log('Especialidad seleccionada: ', this.especialidadSelect);
-      this.loadTurnos();
+      this.filterEspecialistas(especialidad); // Filtra los especialistas por la especialidad seleccionada.
       this.isLoading = false;
     }, 1000);
   }
@@ -143,6 +154,22 @@ export class SolicitarTurnoComponent {
   }
 
   /**
+   * Filtra los especialistas según la especialidad seleccionada.
+   * @param especialidad La especialidad seleccionada.
+   */
+  filterEspecialistas(especialidad: string): void {
+    this.especialistasDisponibles = this.especialistas.filter((especialista) =>
+      especialista.especialidad.includes(especialidad)
+    );
+
+    console.log(
+      'Especialistas disponibles para la especialidad: ',
+      especialidad,
+      this.especialistasDisponibles
+    );
+  }
+
+  /**
    * Me permitira obtener
    * al especialista seleccionado.
    * @param esp El especialista
@@ -154,6 +181,7 @@ export class SolicitarTurnoComponent {
       this.especialistaSelect = especialista;
       console.log('Especialista seleccionado: ', this.especialistaSelect);
       this.filterEspecialidades(especialista); //-->Filtro las especialidades del especialista
+      this.loadTurnos();
       this.isLoading = false;
     }, 1000);
   }

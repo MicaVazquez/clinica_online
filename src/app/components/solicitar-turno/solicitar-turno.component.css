@@ -1,20 +1,8 @@
 main {
-  font-family: "Quenda";
   text-align: center;
   margin: 0;
   padding: 0;
   overflow: auto; /* Asegurarte de que solo el main maneje el overflow */
-}
-
-h1 {
-  font-family: "Galivanted";
-}
-
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Quenda";
 }
 
 /* INICIO DE MODIFICAION DEL SPINNER */
@@ -43,80 +31,11 @@ h6 {
   height: 100px;
 }
 
-/* .circular-div {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease-in-out;
-    background-color: darkslategrey;
-  } */
-
 .centered-text {
   position: absolute;
   text-align: center;
   color: white;
   text-shadow: 2px 2px 2px black;
-}
-
-/* .circular-div {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease-in-out;
-    background-color: darkslategrey;
-  }
-  
-  .circular-div:hover {
-    transform: scale(1.1);
-    border: 10px solid #0b1d60;
-  } */
-
-div[appBtnCircularEsp] {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
-  background-color: darkslategrey;
-  /* Add !important to ensure it overrides */
-}
-
-div[appBtnCircularEsp]:hover {
-  transform: scale(1.1);
-  border: 10px solid #0b1d60;
-  /* Add !important to ensure it overrides */
-}
-
-div[appBtnCuadradoEspecialidad] {
-  width: 150px;
-  height: 150px;
-  border-radius: 15px;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  background-color: darkslategrey;
-}
-
-div[appBtnCuadradoEspecialidad]:hover {
-  background-color: #0b1d60;
 }
 
 .div-horarios {
@@ -125,16 +44,6 @@ div[appBtnCuadradoEspecialidad]:hover {
   border: 2px solid transparent; /* Asegúrate de tener un borde inicial */
   transition: all 0.3s ease-in-out;
 }
-
-div[appBorderFocusHorario]:hover {
-  transform: scale(1.1);
-  border: 10px solid darkslategrey;
-}
-/* .circular-div:hover,
-  .paciente-div:hover{
-    transform: scale(1.1); 
-    border:10px solid #0b1d60;
-  } */
 
 .paciente-div:hover {
   background-color: darkslategrey !important;
@@ -216,4 +125,64 @@ div[appBorderFocusHorario]:hover {
 
 .card-paciente:hover {
   transform: scale(1.05);
+}
+
+.btn-rectangular {
+  width: 150px;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn-rectangular:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rectangular-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Para la imagen del especialista */
+.img-container {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Ajusta el tamaño según necesites */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.img-container img {
+  object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+  width: 100%;
+  height: 100%;
+}
+
+/* Para darle estilo a la tarjeta */
+.card {
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de hover para agrandar el card */
+}
+
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #003366;
+  min-height: 100vh;
+  padding: 20px;
 }

@@ -6,6 +6,13 @@ import {
 } from '@angular/fire/auth-guard';
 export const routes: Routes = [
   {
+    path: 'paciente/solicitar-turno',
+    loadComponent: () =>
+      import('./components/solicitar-turno/solicitar-turno.component').then(
+        (m) => m.SolicitarTurnoComponent
+      ),
+  },
+  {
     path: 'paciente/perfil-pac',
     loadComponent: () =>
       import('./components/pacientes/perfil-pac/perfil-pac.component').then(

@@ -14,10 +14,14 @@ import { TurnoService } from '../../services/turno.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule, NgIf } from '@angular/common';
 import { HoraFormatoPipe } from '../../pipees/hora-formato.pipe';
+import { MatCardModule } from '@angular/material/card';
 
 import Swal from 'sweetalert2';
 import { DoctorPipe } from '../../pipes/doctor.pipe';
 import { StorageService } from '../../services/storage.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Router, RouteReuseStrategy } from '@angular/router';
 @Component({
   selector: 'app-solicitar-turno',
   standalone: true,
@@ -26,6 +30,9 @@ import { StorageService } from '../../services/storage.service';
     CommonModule,
     HoraFormatoPipe,
     DoctorPipe,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './solicitar-turno.component.html',
   styleUrl: './solicitar-turno.component.css',
@@ -67,7 +74,8 @@ export class SolicitarTurnoComponent {
     private turnoService: TurnoService,
     private cronogramaService: CronogramaService,
     private pacienteService: PacienteService,
-    private storageSrv: StorageService
+    private storageSrv: StorageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -238,23 +246,19 @@ export class SolicitarTurnoComponent {
    * Como para reiniciar.
    */
   onReset() {
-    this.diaSelect = null;
-    this.especialidadSelect = '';
-    this.turnosDisponibles = null;
-    this.especialistaSelect = null;
-    this.pacienteSelect = null;
-    // if (this.diaSelect) {
-    //   this.diaSelect = null;
-    // }
-    // else if (this.especialidadSelect != '') {
-    //   this.especialidadSelect = "";
-    // }
-    // else if (this.especialistaSelect != null) {
-    //   this.turnosDisponibles = null;
-    //   this.especialistaSelect = null;
-    // } else {
-    //   this.pacienteSelect = null;
-    // }
+    if (!this.especialidadSelect) {
+      this.goTo();
+    } else {
+      this.diaSelect = null;
+      this.especialidadSelect = '';
+      this.turnosDisponibles = null;
+      this.especialistaSelect = null;
+      this.pacienteSelect = null;
+    }
+  }
+
+  goTo() {
+    this.router.navigateByUrl('paciente');
   }
 
   /**
@@ -345,7 +349,7 @@ export class SolicitarTurnoComponent {
     const dato = this.getKeyByIndex(array, index);
     const fecha = dato.split('/');
 
-    if (fecha.length < 3) return ''; // Verificación adicional para evitar errores
+    if (fecha.length < 3) return '';
 
     const day = fecha[0].padStart(2, '0');
     const month = fecha[1].padStart(2, '0');

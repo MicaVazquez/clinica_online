@@ -48,7 +48,7 @@ export class TurnoService {
       horario: turno.horario,
       id: turno.id,
       fecha: turno.fecha,
-      historial: turno.historialClinico ? turno.historialClinico : false,
+      historialClinico: turno.historialClinico ? turno.historialClinico : false, //??? porquer lo tenia como historial
     });
   }
 

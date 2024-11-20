@@ -1,0 +1,162 @@
+<main>
+  <!-- INICIO DEL CONTENEDOR DE CARGAR HISTORIAL -->
+  <div class="container py-4">
+    <div class="py-3 text-center">
+      <h2 class="title-formulario">Cargar Historia Clínica</h2>
+    </div>
+
+    <!-- INICIO DEL FORMULARIO -->
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      autocomplete="off"
+      class="rounded-3 text-white"
+    >
+      <br /><br />
+      <!-- INICIO DE LA ALTURA -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Altura</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            formControlName="altura"
+            placeholder="Altura de la persona en centimetros"
+          />
+          <span *ngIf="isValidField('altura')" class="form-text text-danger">
+            {{ getFieldError("altura") }}
+          </span>
+        </div>
+      </div>
+      <!-- FIN DE LA ALTURA -->
+
+      <!-- INICIO DEL PESO -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Peso</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            formControlName="peso"
+            placeholder="Peso de la persona en kilogramos"
+          />
+          <span *ngIf="isValidField('peso')" class="form-text text-danger">
+            {{ getFieldError("peso") }}
+          </span>
+        </div>
+      </div>
+      <!-- FIN DEL PESO -->
+
+      <!-- INICIO DE LA TEMPERATURA -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Temperatura</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            formControlName="temperatura"
+            placeholder="Temperatura de la persona en C°"
+          />
+          <span
+            *ngIf="isValidField('temperatura')"
+            class="form-text text-danger"
+          >
+            {{ getFieldError("temperatura") }}
+          </span>
+        </div>
+      </div>
+      <!-- FIN DE LA TEMPERATURA -->
+
+      <!-- INICIO DE LA PRESION -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Presión</label>
+        <div class="col-sm-9">
+          <input
+            class="form-control"
+            formControlName="presion"
+            placeholder="Presion de la persona en mmHg"
+          />
+          <span *ngIf="isValidField('presion')" class="form-text text-danger">
+            {{ getFieldError("presion") }}
+          </span>
+        </div>
+      </div>
+      <!-- FIN DE LA PRESION -->
+
+      <!-- INICIO DE AGREGAR DATO DINAMICO -->
+      <div class="mb-3 row" *ngIf="claves.length < 3">
+        <label class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="Agregar clave"
+              [formControl]="clave"
+            />
+            <input
+              class="form-control"
+              placeholder="Agregar valor"
+              [formControl]="valor"
+            />
+
+            <button
+              class="btn btn-outline-primary"
+              type="button"
+              (click)="onAddDatos()"
+            >
+              Agregar Dato
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- FIN DE AGREGAR DATO DINAMICO -->
+
+      <!-- INICIO DE ELIMINAR DATO DINAMICO -->
+      <div class="mb-3 row" *ngIf="datos.controls.length != 0">
+        <label class="col-sm-3 col-form-label">Datos Extra</label>
+        <div class="col-sm-9" formArrayName="datos">
+          <div
+            class="mb-1"
+            *ngFor="let datito of datos.controls; let i = index"
+          >
+            <div class="input-group">
+              <input value="{{ claves[i] }}" class="form-control" readonly />
+              <input
+                value="{{ datito.value[claves[i]] }}"
+                class="form-control"
+                readonly
+              />
+              <button
+                class="btn btn-outline-danger"
+                type="button"
+                (click)="onDeleteDatos(i)"
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FIN DE ELIMINAR DATO DINAMICO -->
+
+      <!-- INICIO DE LOS BOTONES -->
+      <div class="row justify-content-evenly">
+        <div class="col-sm-6">
+          <button type="submit" class="btn btn-primary float-end" ngClass="">
+            Guardar
+          </button>
+        </div>
+        <div class="col-sm-6">
+          <button
+            type="button"
+            class="btn btn-danger float-end"
+            (click)="onCancel()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+      <br /><br />
+      <!-- FIN DE LOS BOTONES -->
+    </form>
+    <!-- FIN DEL FORMULARIO -->
+  </div>
+  <!-- FIN DEL CONTENEDOR DE CARGAR HISTORIAL -->
+</main>

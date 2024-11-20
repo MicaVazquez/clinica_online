@@ -6,6 +6,13 @@ import {
 } from '@angular/fire/auth-guard';
 export const routes: Routes = [
   {
+    path: 'paciente/mis-turnos',
+    loadComponent: () =>
+      import('./components/pacientes/mis-turnos/mis-turnos.component').then(
+        (m) => m.MisTurnosComponent
+      ),
+  },
+  {
     path: 'paciente/solicitar-turno',
     loadComponent: () =>
       import('./components/solicitar-turno/solicitar-turno.component').then(
@@ -47,6 +54,14 @@ export const routes: Routes = [
         (m) => m.MiperfilComponent
       ),
   },
+  {
+    path: 'especialista/mis-turnos-esp',
+    loadComponent: () =>
+      import('./components/especialista/esp-turnos/esp-turnos.component').then(
+        (m) => m.EspTurnosComponent
+      ),
+  },
+
   {
     path: 'usuarios/especialistas',
     loadComponent: () =>

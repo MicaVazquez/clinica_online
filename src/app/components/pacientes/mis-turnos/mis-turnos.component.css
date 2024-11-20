@@ -1,0 +1,87 @@
+main {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* Asegurarte de que solo el main maneje el overflow */
+}
+
+h1 {
+  color: #2a3663; /* Color que combina con el degradado */
+}
+
+h3,
+h4,
+h5,
+h6 {
+  color: #2a3663; /* Texto legible y acorde */
+}
+
+/* INICIO DE MODIFICACION DEL INPUT DE BUSQUEDA */
+.input {
+  background-color: #faf6e3; /* Color claro compatible con el degradado */
+  color: #2a3663; /* Texto oscuro para buen contraste */
+  border: 2px solid #2a3663;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 1rem;
+}
+.input:focus {
+  outline: none;
+  border-color: #2a3663;
+  box-shadow: 0 0 5px rgba(42, 54, 99, 0.5);
+}
+/* FIN DE MODIFICACION DEL INPUT DE BUSQUEDA */
+
+/* INICIO DE MODIFICACION DE LA CARD */
+.card-paciente {
+  background: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+  color: #2a3663; /* Texto oscuro en contraste */
+  margin-right: 10px;
+  border: 2px solid #2a3663;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+}
+.card-paciente h4 {
+  color: #2a3663; /* Texto acorde con el diseño */
+}
+.card-paciente hr {
+  border-top: 1px solid #2a3663;
+}
+/* FIN DE MODIFICACION DE LA CARD */
+
+/* BOTONES */
+/* button {
+  font-family: "Quenda";
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  color: white;
+  border: none;
+} */
+button.btn-outline-danger {
+  background-color: #b22222;
+  color: white;
+}
+button.btn-outline-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+button.btn-outline-info {
+  background-color: #17a2b8;
+  color: white;
+}
+button.btn-outline-warning {
+  background-color: #ffc107;
+  color: white;
+}
+button:hover {
+  opacity: 0.9;
+}
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #003366;
+  min-height: 100vh;
+  padding: 20px;
+}

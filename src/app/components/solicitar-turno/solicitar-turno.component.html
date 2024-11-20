@@ -1,11 +1,8 @@
 <main>
   <div class="container py-4">
     <div class="div-volver">
-      <button
-        class="btn-volver btn-sm btn-outline-secondary mb-3 mt-5 mx-5"
-        (click)="onReset()"
-      >
-        Atras
+      <button mat-button (click)="onReset()">
+        <mat-icon>arrow_back</mat-icon> Volver
       </button>
     </div>
 
@@ -41,18 +38,21 @@
       >
         <div class="card text-center border-0 shadow-lg">
           <div class="card-body p-0">
-            <!-- Imagen del especialista -->
-            <div class="img-container mb-3">
-              <img
-                [src]="esp.img ? esp.img : 'imagen-default.jpg'"
-                alt="imgDoc"
-                class="img-fluid rounded-3 w-100"
-              />
-            </div>
-            <!-- Nombre del especialista -->
             <h4 class="pt-3 text-capitalize">
               Dr. {{ esp.nombre }} {{ esp.apellido }}
             </h4>
+            <!-- Contenedor de imagen con overflow oculto -->
+            <div
+              class="img-container mb-3 overflow-hidden"
+              style="height: 200px"
+            >
+              <img
+                [src]="esp.img ? esp.img : 'imagen-default.jpg'"
+                alt="imgDoc"
+                class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
+              />
+            </div>
+            <!-- Nombre del especialista -->
           </div>
         </div>
       </div>
@@ -67,8 +67,9 @@
   <!-- INICIO PARA MOSTRAR LOS TURNOS -->
   <div class="row justify-content-evenly" *ngIf="turnosDisponibles !== null">
     <!-- INICIO DE MOSTRAR ESPECIALISTA Y ESPECIALIDADES -->
+
     <div class="row justify-content-evenly mb-5">
-      <div class="col-5 border border-3 border-secondary">
+      <div class="col-5 bg-dark text-light border border-3 border-secondary">
         <div class="row justify-content-evenly mt-2">
           <div class="col-6">
             <h4 class="pt-3 mt-5">
@@ -76,7 +77,7 @@
               {{ especialistaSelect?.nombre }}
             </h4>
           </div>
-          <div class="col-6 border border-3 border-secondary" appBtnCircularEsp>
+          <div class="col-6 border border-3 border-secondary">
             <img
               class="imgRedonda"
               src="{{ especialistaSelect?.img }}"

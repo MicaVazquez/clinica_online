@@ -21,6 +21,7 @@
             class="form-control"
             formControlName="altura"
             placeholder="Altura de la persona en centimetros"
+            appFocusBorder
           />
           <span *ngIf="isValidField('altura')" class="form-text text-danger">
             {{ getFieldError("altura") }}
@@ -37,6 +38,7 @@
             class="form-control"
             formControlName="peso"
             placeholder="Peso de la persona en kilogramos"
+            appFocusBorder
           />
           <span *ngIf="isValidField('peso')" class="form-text text-danger">
             {{ getFieldError("peso") }}
@@ -53,6 +55,7 @@
             class="form-control"
             formControlName="temperatura"
             placeholder="Temperatura de la persona en C°"
+            appFocusBorder
           />
           <span
             *ngIf="isValidField('temperatura')"
@@ -72,6 +75,7 @@
             class="form-control"
             formControlName="presion"
             placeholder="Presion de la persona en mmHg"
+            appFocusBorder
           />
           <span *ngIf="isValidField('presion')" class="form-text text-danger">
             {{ getFieldError("presion") }}
@@ -89,11 +93,13 @@
               class="form-control"
               placeholder="Agregar clave"
               [formControl]="clave"
+              appFocusBorder
             />
             <input
               class="form-control"
               placeholder="Agregar valor"
               [formControl]="valor"
+              appFocusBorder
             />
 
             <button

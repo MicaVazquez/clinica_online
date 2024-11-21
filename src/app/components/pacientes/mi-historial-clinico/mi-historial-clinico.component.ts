@@ -14,6 +14,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { DoctorPipe } from '../../../pipes/doctor.pipe';
 import { jsPDF } from 'jspdf';
 import { FormsModule } from '@angular/forms';
+import { FocusBorderDirective } from '../../../directivas/focus-border.directive';
 
 interface Dato {
   [key: string]: any; // Esto permite cualquier clave, pero puedes especificar tipos más estrictos si conoces la estructura
@@ -21,7 +22,14 @@ interface Dato {
 @Component({
   selector: 'app-mi-historial-clinico',
   standalone: true,
-  imports: [MatProgressSpinnerModule, NgIf, NgFor, DoctorPipe, FormsModule],
+  imports: [
+    MatProgressSpinnerModule,
+    NgIf,
+    NgFor,
+    DoctorPipe,
+    FormsModule,
+    FocusBorderDirective,
+  ],
   templateUrl: './mi-historial-clinico.component.html',
   styleUrl: './mi-historial-clinico.component.css',
 })

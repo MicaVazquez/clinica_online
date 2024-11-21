@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TraceCursorDirective } from '../../../directivas/trace-cursor.directive';
 
 @Component({
   selector: 'app-menu-paciente',
   standalone: true,
-  imports: [],
+  imports: [TraceCursorDirective],
   templateUrl: './menu-paciente.component.html',
   styleUrl: './menu-paciente.component.css',
 })

@@ -11,6 +11,7 @@ import { HoraFormatoPipe } from '../../../pipees/hora-formato.pipe';
 import { Router } from '@angular/router';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FocusBorderDirective } from '../../../directivas/focus-border.directive';
 
 @Component({
   selector: 'app-mis-turnos',
@@ -22,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     HoraFormatoPipe,
     MatIconModule,
     MatButtonModule,
+    FocusBorderDirective,
   ],
   templateUrl: './mis-turnos.component.html',
   styleUrl: './mis-turnos.component.css',

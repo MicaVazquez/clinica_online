@@ -9,6 +9,7 @@ import {
   setDoc,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { HistoriaClinica } from '../interfaces/historia-clinica';
 
 export interface Paciente {
   nombre: string;
@@ -71,6 +72,22 @@ export class PacienteService {
             observer.next(data);
           }
         });
+      });
+    });
+  }
+  traerHistorialClinicoPorId(pacId: string): Observable<HistoriaClinica[]> {
+    return new Observable<HistoriaClinica[]>((observer) => {
+      const col = collection(
+        this.firestore,
+        'pacientes/' + pacId + '/historial'
+      );
+      onSnapshot(col, (snap) => {
+        const hist: HistoriaClinica[] = [];
+        snap.docChanges().forEach((x) => {
+          const data = x.doc.data() as HistoriaClinica;
+          hist.push(data);
+        });
+        observer.next(hist);
       });
     });
   }

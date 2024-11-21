@@ -5,20 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class FormatoDniPipe implements PipeTransform {
-  transform(hora: string): string {
-    if (!hora) {
-      return '';
-    }
-    const [horas, minutos] = hora.split(':');
-    let formato12h = '';
-    const horaNumero = parseInt(horas, 10);
-    if (horaNumero >= 12) {
-      formato12h = horaNumero === 12 ? '12' : (horaNumero - 12).toString();
-      formato12h += `:${minutos} pm`;
-    } else {
-      formato12h = horaNumero === 0 ? '12' : horaNumero.toString();
-      formato12h += `:${minutos} am`;
-    }
-    return formato12h;
+  transform(value: string | number): string {
+    if (!value) return '';
+
+    // Asegurar que el valor sea una cadena
+    const dni = value.toString();
+
+    // Insertar puntos cada tres dígitos desde el final
+    return dni.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
 }

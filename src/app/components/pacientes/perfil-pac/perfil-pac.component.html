@@ -35,7 +35,7 @@
           <hr />
           <!-- INICIO DE MOSTRAR OTRA INFORMACION -->
           <div style="margin-left: 5px">
-            <h5>DNI: {{ paciente.dni.toString() }}</h5>
+            <h5>DNI: {{ paciente.dni.toString() | formatoDni }}</h5>
             <h5>Edad: {{ paciente.edad }}</h5>
             <h5>Email: {{ paciente.email }}</h5>
           </div>

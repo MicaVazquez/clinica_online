@@ -11,7 +11,13 @@ import { MiHistorialClinicoComponent } from '../mi-historial-clinico/mi-historia
 @Component({
   selector: 'app-perfil-pac',
   standalone: true,
-  imports: [NgIf, MatButtonModule, MatIcon, MiHistorialClinicoComponent],
+  imports: [
+    NgIf,
+    MatButtonModule,
+    MatIcon,
+    MiHistorialClinicoComponent,
+    FormatoDniPipe,
+  ],
   templateUrl: './perfil-pac.component.html',
   styleUrl: './perfil-pac.component.css',
 })

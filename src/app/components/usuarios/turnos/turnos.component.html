@@ -1,1 +1,134 @@
-<p>turnos works!</p>
+<button mat-button (click)="goTo()">
+  <mat-icon>arrow_back</mat-icon> Volver
+</button>
+<!-- FIN DEL BOTON PARA REINICIAR -->
+
+<div class="container py-4">
+  <div class="btn-volver"></div>
+  <!-- INICIO DE MOSTRAR LOS FILTROS -->
+  <div
+    class="row justify-content-evenly align-items-center"
+    *ngIf="filtroSeleccionado == ''"
+  >
+    <div class="col-2 py-4">
+      <div class="circular-div" (click)="onSetFiltro('todos')">
+        <h2 class="centered-text pt-3">Todos</h2>
+      </div>
+    </div>
+    <div class="col-2 py-4">
+      <div class="circular-div" (click)="onSetFiltro('especialista')">
+        <h2 class="centered-text pt-3">Especialista</h2>
+      </div>
+    </div>
+    <div class="col-2 py-4">
+      <div class="circular-div" (click)="onSetFiltro('especialidad')">
+        <h2 class="centered-text pt-3">Especialidad</h2>
+      </div>
+    </div>
+  </div>
+  <!-- FIN DE MOSTRAR LOS FILTROS -->
+
+  <!-- INICIO DEL FILTRO POR ESPECIALISTA -->
+  <div
+    *ngIf="
+      filtroSeleccionado === 'especialista' && especialistaSeleccionado === null
+    "
+  >
+    <h1>Especialistas</h1>
+    <div class="row">
+      <div
+        class="card-esp col-12 col-xl-3 border border-3 border-secondary especial-div"
+        *ngFor="let especialista of especialistas"
+        (click)="onSetEspecialista(especialista)"
+      >
+        <div class="row justify-content-evenly mt-2">
+          <div class="col-6">
+            <h4 class="pt-3">
+              Dr. {{ especialista.apellido }}, {{ especialista.nombre }}
+            </h4>
+          </div>
+          <div class="col-2 mx-2">
+            <img
+              class="rounded-5 mt-3"
+              style="width: 60px; height: 60px"
+              src="{{ especialista.img }}"
+              alt="img-doctor"
+            />
+          </div>
+        </div>
+        <hr />
+        <h5 class="mx-2">Especialidades:</h5>
+        <div
+          class="mx-5"
+          *ngFor="let especialidad of especialista.especialidad"
+        >
+          <h6 class="mx-2">{{ especialidad }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN DEL FILTRO POR ESPECIALISTA -->
+
+  <!-- INICIO DE FILTRAR POR ESPECIALIDAD -->
+  <div
+    *ngIf="
+      filtroSeleccionado == 'especialidad' && especialidadSeleccionada === ''
+    "
+  >
+    <h1>Especialidades</h1>
+    <hr />
+    <div class="row">
+      <div
+        class="card-turno col-2 text-light text-center rounded-3 mx-2 mb-2 py-1 especial-div align-items-center"
+        *ngFor="let esp of especialidades"
+        (click)="onSetEspecialidad(esp.nombre)"
+      >
+        <h6 class="pt-3 text-capitalize">{{ esp.nombre }}</h6>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <!-- FIN DE FILTRAR POR ESPECIALIDAD -->
+
+  <!-- INICIO DE MOSTRAR LOS TURNOS -->
+  <div
+    class="row"
+    *ngIf="turnosDisponibles !== null && turnosDisponibles.length > 0"
+  >
+    <div
+      class="card-turno col-4 text-light border border-3 rounded-3 text-left mb-2"
+      *ngFor="let turno of turnosDisponibles"
+    >
+      <h3>Especialista: {{ getEspecialista(turno.emailEspecialista) }}</h3>
+      <h4>Fecha: {{ turno.fecha }}</h4>
+      <h4>Hora: {{ turno.horario.hora }}</h4>
+      <h4>Nro. Consultorio: {{ turno.horario.nroConsultorio }}</h4>
+      <h4>Estado: {{ turno.estado }}</h4>
+      <hr />
+      <div class="row" *ngIf="turno.estado === 'aceptado'">
+        <div class="col-3 mb-3">
+          <button class="btn btn-outline-danger" (click)="onCancelar(turno)">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN DE MOSTRAR LOS TURNOS -->
+
+  <!-- EN CASO DE NO TENER TURNOS CARGADOS -->
+  <div *ngIf="!turnosCargados">
+    <h3>No tiene ningún turno generado!</h3>
+  </div>
+  <!-- EN CASO DE NO TENER TURNOS CARGADOS -->
+
+  <!-- INICIO DEL SPINNER -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <mat-progress-spinner
+      mode="indeterminate"
+      diameter="80"
+      color="primary"
+    ></mat-progress-spinner>
+  </div>
+  <!-- FIN DEL SPINNER -->
+</div>

@@ -10,11 +10,19 @@ import { CargarHistorialComponent } from '../../cargar-historial/cargar-historia
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { FocusBorderDirective } from '../../../directivas/focus-border.directive';
 
 @Component({
   selector: 'app-esp-turnos',
   standalone: true,
-  imports: [NgIf, NgFor, CargarHistorialComponent, MatIcon, MatButtonModule],
+  imports: [
+    NgIf,
+    NgFor,
+    CargarHistorialComponent,
+    MatIcon,
+    MatButtonModule,
+    FocusBorderDirective,
+  ],
   templateUrl: './esp-turnos.component.html',
   styleUrl: './esp-turnos.component.css',
 })

@@ -4,6 +4,7 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/auth-guard';
+import { animation } from '@angular/animations';
 export const routes: Routes = [
   {
     path: 'paciente/mis-turnos',
@@ -68,7 +69,27 @@ export const routes: Routes = [
         (m) => m.EspTurnosComponent
       ),
   },
-
+  {
+    path: 'usuarios/estadisticas',
+    loadComponent: () =>
+      import('./components/usuarios/estadisticas/estadisticas.component').then(
+        (m) => m.EstadisticasComponent
+      ),
+  },
+  {
+    path: 'usuarios/turnos',
+    loadComponent: () =>
+      import('./components/usuarios/turnos/turnos.component').then(
+        (m) => m.TurnosComponent
+      ),
+  },
+  {
+    path: 'usuarios/solicitar-turno-admin',
+    loadComponent: () =>
+      import(
+        './components/usuarios/solicitar-turno-admin/solicitar-turno-admin.component'
+      ).then((m) => m.SolicitarTurnoAdminComponent),
+  },
   {
     path: 'usuarios/especialistas',
     loadComponent: () =>
@@ -106,6 +127,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    data: { animation: 'login' },
     loadComponent: () =>
       import('./components/login/login.component').then(
         (m) => m.LoginComponent
@@ -113,6 +135,7 @@ export const routes: Routes = [
   },
   {
     path: 'register',
+    data: { animation: 'register' },
     loadComponent: () =>
       import('./components/register/register.component').then(
         (m) => m.RegisterComponent

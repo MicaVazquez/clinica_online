@@ -1,44 +1,47 @@
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
-import { Horario, Jornada } from '../../interfaces/jornada';
-import { HorarioAtencion, Turno } from '../../interfaces/turno';
-import { Paciente, PacienteService } from '../../services/paciente.service';
-import { Especialista } from '../../interfaces/especialista';
-import { Especialidad } from '../../interfaces/especialidad';
-import { AuthService } from '../../services/auth.service';
-import { EspecialistaService } from '../../services/especialista.service';
-import { EspecialidadService } from '../../services/especialidad.service';
-import { JornadaService } from '../../services/jornada.service';
-import { CronogramaService } from '../../services/cronograma.service';
-import { TurnoService } from '../../services/turno.service';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CommonModule, NgIf } from '@angular/common';
-import { HoraFormatoPipe } from '../../pipees/hora-formato.pipe';
-import { MatCardModule } from '@angular/material/card';
-
+import { Component, Input } from '@angular/core';
+import { SolicitarTurnoComponent } from '../../solicitar-turno/solicitar-turno.component';
+import { Horario, Jornada } from '../../../interfaces/jornada';
+import { HorarioAtencion, Turno } from '../../../interfaces/turno';
+import { Paciente, PacienteService } from '../../../services/paciente.service';
+import { Especialista } from '../../../interfaces/especialista';
+import { Especialidad } from '../../../interfaces/especialidad';
+import { AuthService } from '../../../services/auth.service';
+import { EspecialistaService } from '../../../services/especialista.service';
+import { EspecialidadService } from '../../../services/especialidad.service';
+import { JornadaService } from '../../../services/jornada.service';
+import { TurnoService } from '../../../services/turno.service';
+import { CronogramaService } from '../../../services/cronograma.service';
 import Swal from 'sweetalert2';
-import { DoctorPipe } from '../../pipes/doctor.pipe';
-import { StorageService } from '../../services/storage.service';
-import { MatIconModule } from '@angular/material/icon';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { DoctorPipe } from '../../../pipes/doctor.pipe';
+import { HoraFormatoPipe } from '../../../pipees/hora-formato.pipe';
+import { FormsModule } from '@angular/forms';
+import {
+  MatProgressSpinner,
+  MatProgressSpinnerModule,
+} from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouteReuseStrategy } from '@angular/router';
+
 @Component({
-  selector: 'app-solicitar-turno',
+  selector: 'app-solicitar-turno-admin',
   standalone: true,
   imports: [
-    MatProgressSpinnerModule,
-    CommonModule,
-    HoraFormatoPipe,
+    NgIf,
+    NgFor,
     DoctorPipe,
-    MatCardModule,
+    HoraFormatoPipe,
+    CommonModule,
+    MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule,
   ],
-  templateUrl: './solicitar-turno.component.html',
-  styleUrl: './solicitar-turno.component.css',
+  templateUrl: './solicitar-turno-admin.component.html',
+  styleUrl: './solicitar-turno-admin.component.css',
 })
-export class SolicitarTurnoComponent {
-  @Input() public isAdministrador: boolean = false; //-->Para pasarle el rol,
+export class SolicitarTurnoAdminComponent {
+  @Input() public isAdministrador: boolean = true; //-->Para pasarle el rol,
   public isLoading: boolean = false;
 
   public jornadas!: Jornada[];
@@ -74,11 +77,15 @@ export class SolicitarTurnoComponent {
     private turnoService: TurnoService,
     private cronogramaService: CronogramaService,
     private pacienteService: PacienteService,
-    private storageSrv: StorageService,
     private router: Router
   ) {}
 
+  /**
+   * En el OnInit me traigo
+   * todos los datos.
+   */
   ngOnInit(): void {
+    // this.cronogramaService.generarJornadaInicial();//-->Genero por primera vez el cronograma
     this.pacienteService.traer().subscribe((data) => (this.pacientes = data));
     this.especialistaService
       .traer()
@@ -110,21 +117,21 @@ export class SolicitarTurnoComponent {
    * @param especialidad La especialidad
    * seleccionada por el usuario.
    */
-  // setEspecialidad(especialidad: string): void {
-  //   this.isLoading = true;
-  //   setTimeout(() => {
-  //     this.especialidadSelect = especialidad;
-  //     console.log('Especialidad seleccionada: ', this.especialidadSelect);
-  //     this.loadTurnos();
-  //     this.isLoading = false;
-  //   }, 1000);
-  // }
   setEspecialidad(especialidad: string): void {
     this.isLoading = true;
     setTimeout(() => {
       this.especialidadSelect = especialidad;
       console.log('Especialidad seleccionada: ', this.especialidadSelect);
-      this.filterEspecialistas(especialidad); // Filtra los especialistas por la especialidad seleccionada.
+
+      // Filtrar especialistas según la especialidad seleccionada
+      this.especialistasDisponibles = this.especialistas.filter(
+        (especialista) => especialista.especialidad.includes(especialidad)
+      );
+      console.log(
+        'Especialistas disponibles para la especialidad: ',
+        this.especialistasDisponibles
+      );
+
       this.isLoading = false;
     }, 1000);
   }
@@ -141,7 +148,12 @@ export class SolicitarTurnoComponent {
     setTimeout(() => {
       this.pacienteSelect = paciente;
       this.emailPaciente = paciente.email;
-      console.log('paciente seleccionado: ', this.pacienteSelect);
+      console.log('Paciente seleccionado: ', this.pacienteSelect);
+
+      // Reiniciar selección de especialista y especialidad
+      this.especialidadSelect = '';
+      this.especialistaSelect = null;
+      this.especialidadesDisponibles = this.especialidades; // Mostrar todas las especialidades
       this.isLoading = false;
     }, 1000);
   }
@@ -161,22 +173,6 @@ export class SolicitarTurnoComponent {
   }
 
   /**
-   * Filtra los especialistas según la especialidad seleccionada.
-   * @param especialidad La especialidad seleccionada.
-   */
-  filterEspecialistas(especialidad: string): void {
-    this.especialistasDisponibles = this.especialistas.filter((especialista) =>
-      especialista.especialidad.includes(especialidad)
-    );
-
-    console.log(
-      'Especialistas disponibles para la especialidad: ',
-      especialidad,
-      this.especialistasDisponibles
-    );
-  }
-
-  /**
    * Me permitira obtener
    * al especialista seleccionado.
    * @param esp El especialista
@@ -188,7 +184,7 @@ export class SolicitarTurnoComponent {
       this.especialistaSelect = especialista;
       console.log('Especialista seleccionado: ', this.especialistaSelect);
       this.filterEspecialidades(especialista); //-->Filtro las especialidades del especialista
-      this.loadTurnos();
+      this.loadTurnos(); //--> Cargar turnos disponibles para el especialista seleccionado
       this.isLoading = false;
     }, 1000);
   }
@@ -245,7 +241,7 @@ export class SolicitarTurnoComponent {
    * Como para reiniciar.
    */
   onReset() {
-    if (!this.especialidadSelect) {
+    if (!this.pacienteSelect) {
       this.goTo();
     } else {
       this.diaSelect = null;
@@ -257,7 +253,7 @@ export class SolicitarTurnoComponent {
   }
 
   goTo() {
-    this.router.navigateByUrl('paciente');
+    this.router.navigateByUrl('usuarios');
   }
 
   /**
@@ -348,7 +344,7 @@ export class SolicitarTurnoComponent {
     const dato = this.getKeyByIndex(array, index);
     const fecha = dato.split('/');
 
-    if (fecha.length < 3) return '';
+    if (fecha.length < 3) return ''; // Verificación adicional para evitar errores
 
     const day = fecha[0].padStart(2, '0');
     const month = fecha[1].padStart(2, '0');

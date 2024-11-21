@@ -29,7 +29,7 @@
           />
         </ng-template>
 
-        <div class="card-body">
+        <div class="card-body" appCambiarColorCard>
           <h5 class="card-title">
             {{ paciente.nombre }} {{ paciente.apellido }}
           </h5>
@@ -39,8 +39,61 @@
             <strong>Email:</strong> {{ paciente.email }} <br />
             <strong>Obra Social:</strong> {{ paciente.obraSocial }}
           </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-secondary"
+                (click)="getHistorial(paciente)"
+              >
+                Ver Historiales
+              </button>
+              <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="px-5 bg-dark rounded-3 mt-5 mb-5 pb-3"
+  *ngIf="historialClinico.length > 0"
+>
+  <div class="d-flex justify-content-between align-items-right">
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-danger mt-3"
+      (click)="reset()"
+    >
+      Cerrar
+    </button>
+  </div>
+  <div
+    class="row justify-content-evenly text-center align-items-center text-dark bg-white rounded-3 mt-5 mb-5 pb-3"
+    *ngFor="let histoCli of historialClinico"
+  >
+    <div class="col-12 mt-3">
+      <h5>Especialista: {{ getEspecialista(histoCli.emailEspecialista) }}</h5>
+      <hr />
+    </div>
+    <div class="col-12">
+      <h5>Altura: {{ histoCli.altura }}</h5>
+    </div>
+    <div class="col-12">
+      <h5>Peso: {{ histoCli.peso }}</h5>
+    </div>
+    <div class="col-12">
+      <h5>Temperatura: {{ histoCli.temperatura }}</h5>
+    </div>
+    <div class="col-12">
+      <h5>Presion: {{ histoCli.presion }}</h5>
+    </div>
+    <div class="col-12" *ngFor="let dato of histoCli.datos; let i = index">
+      <h5 class="text-capitalize">
+        {{ sacarKey(dato) }}: {{ dato[sacarKey(dato)] }}
+      </h5>
     </div>
   </div>
 </div>

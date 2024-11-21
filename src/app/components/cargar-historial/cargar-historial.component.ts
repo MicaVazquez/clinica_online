@@ -19,11 +19,18 @@ import {
 } from '../../interfaces/historia-clinica';
 import Swal from 'sweetalert2';
 import { NgFor, NgIf } from '@angular/common';
+import { FocusBorderDirective } from '../../directivas/focus-border.directive';
 
 @Component({
   selector: 'app-cargar-historial',
   standalone: true,
-  imports: [FormsModule, NgIf, ReactiveFormsModule, NgFor],
+  imports: [
+    FormsModule,
+    NgIf,
+    ReactiveFormsModule,
+    NgFor,
+    FocusBorderDirective,
+  ],
   templateUrl: './cargar-historial.component.html',
   styleUrl: './cargar-historial.component.css',
 })

@@ -8,10 +8,24 @@ import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2';
 import { TurnoService } from '../../../services/turno.service';
 import * as XLSX from 'xlsx';
+import {
+  DatoDinamico,
+  HistoriaClinica,
+} from '../../../interfaces/historia-clinica';
+import { EspecialistaService } from '../../../services/especialista.service';
+import { Especialista } from '../../../interfaces/especialista';
+import { CambiarColorCardDirective } from '../../../directivas/cambiar-color-card.directive';
 @Component({
   selector: 'app-pacientes',
   standalone: true,
-  imports: [NgIf, NgFor, FormPacienteComponent, MatButtonModule, MatIconModule],
+  imports: [
+    NgIf,
+    NgFor,
+    FormPacienteComponent,
+    MatButtonModule,
+    MatIconModule,
+    CambiarColorCardDirective,
+  ],
   templateUrl: './pacientes.component.html',
   styleUrl: './pacientes.component.css',
 })
@@ -20,16 +34,20 @@ export class PacientesComponent {
   pacienteSelect: any = null; // Paciente seleccionado
   public showFormComponent = false;
   isRegistrationSuccessful = false;
+  public historialClinico: HistoriaClinica[] = [];
+  public especialistas: Especialista[] = [];
   showPacientes = true;
   constructor(
     public pacienteSrv: PacienteService,
     private router: Router,
-    private turnoService: TurnoService
+    private turnoService: TurnoService,
+    private esp: EspecialistaService
   ) {}
   ngOnInit() {
     this.pacienteSrv
       .traer()
       .subscribe((pacientes) => (this.pacientes = pacientes));
+    this.esp.traer().subscribe((esp) => (this.especialistas = esp));
   }
   onAddPacienteAdmin() {
     this.showFormComponent = !this.showFormComponent;
@@ -124,5 +142,31 @@ export class PacientesComponent {
       title: 'Excel generado',
       text: 'El archivo Excel con los datos de los pacientes ha sido generado correctamente.',
     });
+  }
+
+  getHistorial(paciente: Paciente) {
+    console.log(paciente);
+    this.pacienteSrv
+      .traerHistorialClinicoPorId(paciente.idDoc)
+      .subscribe((historial) => {
+        this.historialClinico = historial;
+        console.log(this.historialClinico);
+      });
+  }
+  reset() {
+    this.historialClinico = [];
+  }
+
+  sacarKey(datos: DatoDinamico) {
+    return Object.keys(datos)[0];
+  }
+
+  getEspecialista(email: string): string {
+    for (const esp of this.especialistas) {
+      if (esp.email === email) {
+        return `${esp.nombre} ${esp.apellido}`;
+      }
+    }
+    return '';
   }
 }

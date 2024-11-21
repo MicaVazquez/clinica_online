@@ -7,6 +7,8 @@ import { FormAdminComponent } from '../../../pages/usuarios/form-admin/form-admi
 import { FormEspecialistaComponent } from '../../forms/form-especialista/form-especialista.component';
 import { EspecialistasComponent } from '../especialistas/especialistas.component';
 import { Route, Router } from '@angular/router';
+import { TraceCursorDirective } from '../../../directivas/trace-cursor.directive';
+import { FormatoDniPipe } from '../../../pipes/formato-dni.pipe';
 @Component({
   selector: 'app-usuarios',
   standalone: true,
@@ -16,6 +18,8 @@ import { Route, Router } from '@angular/router';
     FormAdminComponent,
     FormEspecialistaComponent,
     EspecialistasComponent,
+    TraceCursorDirective,
+    FormatoDniPipe,
   ],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',

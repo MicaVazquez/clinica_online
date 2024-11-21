@@ -199,4 +199,20 @@ export class AuthService {
       });
     });
   }
+  async getLogs() {
+    let array: any[] = [];
+    try {
+      const querySnapshot = await getDocs(collection(this.firestore, 'logs'));
+      querySnapshot.forEach((doc) => {
+        let data = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        array.push(data);
+      });
+    } catch (error) {
+      console.error('Error getting logs: ', error);
+    }
+    return array;
+  }
 }

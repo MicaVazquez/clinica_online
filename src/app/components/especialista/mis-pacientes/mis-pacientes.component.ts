@@ -14,10 +14,18 @@ import { FavButtonComponent } from '../../fav-button/fav-button.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { FocusBorderDirective } from '../../../directivas/focus-border.directive';
 @Component({
   selector: 'app-mis-pacientes',
   standalone: true,
-  imports: [NgIf, FavButtonComponent, NgFor, MatButtonModule, MatIconModule],
+  imports: [
+    NgIf,
+    FavButtonComponent,
+    NgFor,
+    MatButtonModule,
+    MatIconModule,
+    FocusBorderDirective,
+  ],
   templateUrl: './mis-pacientes.component.html',
   styleUrl: './mis-pacientes.component.css',
 })
@@ -67,6 +75,7 @@ export class MisPacientesComponent {
                   this.turnos.push(turno);
                 }
               }
+
               this.cdr.detectChanges();
             });
         }

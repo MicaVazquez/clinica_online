@@ -167,7 +167,7 @@ export class LoginComponent {
 
     let especialistas = await this.especialistaSrv.obtener('especialistas');
     this.especialista1 = especialistas.find(
-      (esp1: any) => esp1.data.email === 'leyiseh310@anypng.com'
+      (esp1: any) => esp1.data.email === 'fevep70715@anypng.com'
     );
     console.log('Especialista #1: ', this.especialista1);
     this.especialista2 = especialistas.find(
@@ -177,7 +177,7 @@ export class LoginComponent {
 
     let pacientes = await this.pacienteSrv.obtener('pacientes');
     this.paciente1 = pacientes.find(
-      (pac: any) => pac.data.email === 'gobik24959@cironex.com'
+      (pac: any) => pac.data.email === 'dapega2161@gianes.com'
     );
     console.log('Paciente #1: ', this.paciente1);
 

@@ -1,0 +1,250 @@
+main {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* Asegurarte de que solo el main maneje el overflow */
+}
+
+/* INICIO DE MODIFICAION DEL SPINNER */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mat-progress-spinner {
+  width: 80px;
+  height: 80px;
+}
+/* FIN DE MODIFICAION DEL SPINNER */
+
+/* INICIO DE LA MODIFICACION DE LAS ESPECIALIDADES */
+.img-especialidad {
+  width: 100px;
+  height: 100px;
+}
+
+/* .circular-div {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    background-color: darkslategrey;
+  } */
+
+.centered-text {
+  position: absolute;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+/* .circular-div {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    background-color: darkslategrey;
+  }
+  
+  .circular-div:hover {
+    transform: scale(1.1);
+    border: 10px solid #0b1d60;
+  } */
+
+div[appBtnCircularEsp] {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  background-color: darkslategrey;
+  /* Add !important to ensure it overrides */
+}
+
+div[appBtnCircularEsp]:hover {
+  transform: scale(1.1);
+  border: 10px solid #0b1d60;
+  /* Add !important to ensure it overrides */
+}
+
+div[appBtnCuadradoEspecialidad] {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: darkslategrey;
+}
+
+div[appBtnCuadradoEspecialidad]:hover {
+  background-color: #0b1d60;
+}
+
+.div-horarios {
+  background-color: #0b1d60;
+  color: white;
+  border: 2px solid transparent; /* Asegúrate de tener un borde inicial */
+  transition: all 0.3s ease-in-out;
+}
+
+div[appBorderFocusHorario]:hover {
+  transform: scale(1.1);
+  border: 10px solid darkslategrey;
+}
+/* .circular-div:hover,
+  .paciente-div:hover{
+    transform: scale(1.1); 
+    border:10px solid #0b1d60;
+  } */
+
+.paciente-div:hover {
+  background-color: darkslategrey !important;
+  cursor: pointer;
+}
+/* FIN DE LA MODIFICACION DE LAS ESPECIALIDADES */
+
+/* INICIO DE MODIFICACION DIV HORARIOS */
+
+/* FIN DE MODIFICACION DIV HORARIOS */
+
+/* INICIO DE MODIFICACION DE LA IMAGEN DE ESPECIALISTA */
+.imgRedonda {
+  height: 100%;
+  width: auto !important;
+  object-fit: cover;
+}
+/* FIN DE MODIFICACION DE LA IMAGEN DE ESPECIALISTA */
+
+.div-volver {
+  text-align: left;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* Asegurarte de que solo el main maneje el overflow */
+}
+
+.btn-volver {
+  position: relative;
+  width: auto; /* Cambiar a auto para ajustar automáticamente el ancho */
+  padding: 0 20px; /* Ajustar el padding para darle espacio interno */
+  height: 45px;
+  background: linear-gradient(#3c58b9, #5a84d7, #3c58b9);
+  border: 2px solid #c9daf4;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 15px;
+  margin-left: 0; /* Asegura que no haya margen a la izquierda */
+}
+
+.btn-volver::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#3c58b9, #5a84d7, #3c58b9);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.btn-volver:hover::before {
+  top: 0;
+}
+/* FIN DE LA MODIFICACION DEL BOTON PARA VOLVER */
+
+.div-turno {
+  height: 350px;
+}
+
+.card-paciente {
+  cursor: pointer;
+  margin: 10px;
+  height: auto;
+  min-height: 250px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background-color: bisque;
+  transition: all 0.2s ease-in-out;
+  overflow-wrap: break-word;
+}
+
+.card-paciente:hover {
+  transform: scale(1.05);
+}
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #2a3663;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de hover para agrandar el card */
+}
+
+.btn-rectangular {
+  width: 150px;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.btn-rectangular:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rectangular-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

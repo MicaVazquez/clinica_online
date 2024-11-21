@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" appTraceCursor>
   <div class="row">
     <div class="col-lg-1"></div>
     <main class="col-md-9 ms-sm-auto col-lg-10">
@@ -30,24 +30,24 @@
 
         <div
           class="div-botones col-10 col-md-3 col-xl-3 p-5 mb-4 rounded-3 border border-4 div-botones"
-          (click)="goTo('pacientes')"
+          (click)="goTo('solicitar-turno-admin')"
         >
           <i class="fa fa-user fa-2x"></i>
           Solicitar Turno
         </div>
         <div
           class="div-botones col-10 col-md-3 col-xl-3 p-5 mb-4 rounded-3 border border-4 div-botones"
-          (click)="goTo('pacientes')"
+          (click)="goTo('turnos')"
         >
           <i class="fa fa-user fa-2x"></i>
           Turnos
         </div>
         <div
           class="div-botones col-10 col-md-3 col-xl-3 p-5 mb-4 rounded-3 border border-4 div-botones"
-          (click)="goTo('pacientes')"
+          (click)="goTo('estadisticas')"
         >
           <i class="fa fa-user fa-2x"></i>
-          Mi perfil
+          Estadisticas
         </div>
       </div>
       <!-- INICIO DEL SIDEBAR -->
@@ -82,7 +82,7 @@
                   </div>
                   <hr />
                   <div style="margin-left: 20%" class="admin-info">
-                    <h5>DNI: {{ admin.dni }}</h5>
+                    <h5>DNI: {{ admin.dni | formatoDni }}</h5>
                     <h5>Email: {{ admin.email }}</h5>
                     <h5>Edad: {{ admin.edad }}</h5>
                   </div>

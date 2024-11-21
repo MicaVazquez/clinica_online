@@ -8,6 +8,8 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Route, Router } from '@angular/router';
+import * as XLSX from 'xlsx';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-especialistas',
   standalone: true,
@@ -86,5 +88,36 @@ export class EspecialistasComponent {
   }
   goTo() {
     this.router.navigateByUrl('usuarios');
+  }
+
+  onDescargarEspecialistasExcel() {
+    console.log('Generando Excel de especialistas...');
+
+    // Definir los datos de los especialistas a exportar
+    const especialistasData = this.especialistas.map((especialista) => ({
+      Nombre: especialista.nombre,
+      Apellido: especialista.apellido,
+      Edad: especialista.edad,
+      DNI: especialista.dni,
+      Especialidades: especialista.especialidad.join(', '), // Unir las especialidades si son varias
+      Email: especialista.email,
+      Activo: especialista.active ? 'Sí' : 'No', // Mostrar como 'Sí' o 'No'
+    }));
+
+    // Crear una hoja de Excel a partir de los datos
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(especialistasData);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Especialistas');
+
+    // Descargar el archivo Excel
+    const nombreFile = 'Especialistas_' + new Date().toISOString() + '.xlsx';
+    XLSX.writeFile(wb, nombreFile);
+
+    // Mostrar un mensaje de éxito con SweetAlert2
+    Swal.fire({
+      icon: 'success',
+      title: 'Excel generado',
+      text: 'El archivo Excel con los datos de los especialistas ha sido generado correctamente.',
+    });
   }
 }

@@ -1,0 +1,89 @@
+<div class="container">
+  <!-- INICIO DEL BOTON DE DESCARGA -->
+  <div class="row align-items-left mt-2">
+    <div class="col-auto">
+      <select
+        class="form-select"
+        name="especialistas"
+        [(ngModel)]="especialistaSeleccionado"
+      >
+        <option value="todos">TODOS</option>
+        <option *ngFor="let esp of especialistasFiltrados" [value]="esp.email">
+          {{ esp.nombre }} {{ esp.apellido }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-auto">
+      <button class="btn btn-outline-success" (click)="onGenerarPdfHistorial()">
+        Descargar Historial Clinico
+      </button>
+    </div>
+  </div>
+  <br />
+  <!-- FIN DEL BOTON DE DESCARGA -->
+
+  <!-- INICIO PARA FILTRAR LA TABLA DEL HISTORIAL CLINICO -->
+  <div class="row justify-content-start">
+    <div class="col-6 mt-2">
+      <label for="filtroNombre">Buscar:</label>
+    </div>
+    <div class="col-6">
+      <input
+        type="text"
+        class="input form-control"
+        (input)="onFiltrarHistorial($event)"
+      />
+    </div>
+  </div>
+  <br />
+  <!-- FIN PARA FILTRAR LA TABLA DEL HISTORIAL CLINICO -->
+
+  <!-- INICIO DE LA TABLA -->
+  <div class="py-3" *ngIf="historialClinico.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Especialista</th>
+          <th class="text-align-center">Especialidad</th>
+          <th class="text-align-center">Peso</th>
+          <th class="text-align-center">Altura</th>
+          <th class="text-align-center">Presión</th>
+          <th class="text-align-center">Temperatura</th>
+          <th class="text-align-center">Observación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let historiaClinica of historialMostrar">
+          <td
+            *ngIf="getEspecialista(historiaClinica.emailEspecialista)"
+            class="text-align-center"
+          >
+            {{ especialista.nombre | doctor }} {{ especialista.apellido }}
+          </td>
+          <td class="text-align-center">{{ historiaClinica.especialidad }}</td>
+          <td class="text-align-center">{{ historiaClinica.peso }}</td>
+          <td class="text-align-center">{{ historiaClinica.altura }}</td>
+          <td class="text-align-center">{{ historiaClinica.presion }}</td>
+          <td class="text-align-center">{{ historiaClinica.temperatura }}</td>
+          <!-- Aquí mostrarías la observación directamente en una celda separada -->
+          <td class="text-align-center">
+            {{ getObservaciones(historiaClinica) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FIN DE LA TABLA -->
+</div>
+
+<!-- INICIO DEL SPINNER -->
+<div *ngIf="isLoading" class="spinner-overlay">
+  <mat-progress-spinner
+    mode="indeterminate"
+    diameter="80"
+    color="primary"
+  ></mat-progress-spinner>
+</div>
+<!-- FIN DEL SPINNER -->

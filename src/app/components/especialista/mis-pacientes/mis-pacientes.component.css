@@ -1,0 +1,81 @@
+main {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* Asegurarte de que solo el main maneje el overflow */
+}
+
+/* INICIO DE LA IMAGEN DEL PACIENTE */
+.img-paciente {
+  width: 150px;
+  height: 150px;
+}
+
+.circular-div-pacientes {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Bordes redondeados */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer; /* Añadir cursor de mano para indicar que es un botón */
+  background-color: #faf6e3;
+}
+
+.circular-div-pacientes:hover {
+  border: 10px solid darkslategray;
+}
+/* FIN DE LA IMAGEN DEL PACIENTE */
+
+/* INICIO DE MODIFICACION DE LA TABLA */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  padding: 7px;
+  text-align: center;
+  border: 1px solid #ddd;
+  color: white;
+  background: #d8dbbd;
+}
+
+.table th {
+  background: rgb(14, 28, 28);
+}
+
+.table td {
+  background: #2a3663;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table td div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.table td {
+  min-width: 100px; /* Ajusta el tamaño mínimo de las celdas según sea necesario */
+  max-width: 200px; /* Ajusta el tamaño máximo de las celdas según sea necesario */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* FIN DE MODIFICACION DE LA TABLA */
+:host {
+  display: block;
+  background: linear-gradient(135deg, #faf6e3, #2a3663);
+  color: #0b1d60;
+  min-height: 100vh;
+  padding: 20px;
+}

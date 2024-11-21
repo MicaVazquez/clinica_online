@@ -6,11 +6,12 @@ import { FormatoDniPipe } from '../../../pipes/formato-dni.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { Route, Router } from '@angular/router';
+import { MiHistorialClinicoComponent } from '../mi-historial-clinico/mi-historial-clinico.component';
 
 @Component({
   selector: 'app-perfil-pac',
   standalone: true,
-  imports: [NgIf, MatButtonModule, MatIcon],
+  imports: [NgIf, MatButtonModule, MatIcon, MiHistorialClinicoComponent],
   templateUrl: './perfil-pac.component.html',
   styleUrl: './perfil-pac.component.css',
 })

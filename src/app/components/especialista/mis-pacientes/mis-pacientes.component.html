@@ -1,1 +1,109 @@
+<main>
+  <div class="container p-4">
+    <h2>Mis Pacientes</h2>
+    <hr />
+    <div class="btn-volver">
+      <button mat-button (click)="goTo()">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </button>
+    </div>
+    <!-- INICIO DE MOSTRAR LOS HISTORIALES -->
+    <div class="py-3 justify-content-center" *ngIf="historiaClinica.length > 0">
+      <!-- INICIO DE BUSCAR PARA FILTRAR HISTORIAL -->
+      <div class="row justify-content-start">
+        <div class="col-6 mt-2">
+          <label for="filtroNombre">Buscar:</label>
+        </div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="input form-control"
+            (input)="onFiltrarHistorial($event)"
+          />
+        </div>
+      </div>
+      <!-- HISTORIAL DE BUSCAR PARA FILTRAR HISTORIAL -->
 
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-danger m-2"
+        (click)="onReset()"
+      >
+        Cerrar</button
+      ><br />
+      <!-- FIN DE RESETEAR EL HISTORIAL -->
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Paciente</th>
+              <th>Especialidad</th>
+              <th>Peso</th>
+              <th>Altura</th>
+              <th>Presión</th>
+              <th>Temperatura</th>
+              <th>Observación</th>
+              <th>Reseña</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let historiaClinica of historialMostrar">
+              <td>{{ getPaciente(historiaClinica.emailPaciente) }}</td>
+              <td>{{ historiaClinica.especialidad }}</td>
+              <td>{{ historiaClinica.peso }}</td>
+              <td>{{ historiaClinica.altura }}</td>
+              <td>{{ historiaClinica.presion }}</td>
+              <td>{{ historiaClinica.temperatura }}</td>
+              <td>
+                <div
+                  class="text-light"
+                  *ngFor="let dato of historiaClinica.datos"
+                >
+                  {{ sacarKey(dato) }}: {{ dato[sacarKey(dato)] }}
+                </div>
+              </td>
+              <td>
+                <button
+                  *ngIf="
+                    getReseniaByEmailAndEspecialidad(
+                      historiaClinica.emailPaciente,
+                      historiaClinica.especialidad
+                    ) !== ''
+                  "
+                  class="btn btn-outline-info"
+                  (click)="
+                    onVerResenia(
+                      getTurno(
+                        historiaClinica.emailPaciente,
+                        historiaClinica.especialidad
+                      )
+                    )
+                  "
+                >
+                  Ver Reseña
+                </button>
+                <span
+                  *ngIf="
+                    getReseniaByEmailAndEspecialidad(
+                      historiaClinica.emailPaciente,
+                      historiaClinica.especialidad
+                    ) === ''
+                  "
+                  >Sin Reseña</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- FIN DE MOSTRAR LOS HISTORIALES -->
+  </div>
+
+  <!-- INICIO DEL FAB-BUTTON PARA SELECCIONAR AL PACIENTE -->
+  <app-fav-button
+    [pacientes]="pacientes"
+    (pacienteSeleccionado)="onGetHistorial($event)"
+  ></app-fav-button>
+  <!-- FIN DEL FAB-BUTTON PARA SELECCIONAR AL PACIENTE -->
+</main>

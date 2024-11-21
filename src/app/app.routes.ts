@@ -41,6 +41,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'especialista/mis-pacientes',
+    loadComponent: () =>
+      import(
+        './components/especialista/mis-pacientes/mis-pacientes.component'
+      ).then((m) => m.MisPacientesComponent),
+  },
+  {
     path: 'especialista/mis-horarios',
     loadComponent: () =>
       import(

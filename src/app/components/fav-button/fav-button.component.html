@@ -1,0 +1,21 @@
+<!-- INICIO DEL FAB-BUTTON -->
+<div class="fab-container">
+  <button class="fab-button" (click)="toggleDropdown()">
+    <i class="material-icons">add</i>
+  </button>
+  <div class="fab-dropdown" *ngIf="isDropdownOpen">
+    <div
+      *ngFor="let paciente of pacientes"
+      class="dropdown-item"
+      (click)="selectPaciente(paciente)"
+    >
+      <img
+        [src]="paciente.img1"
+        class="img-paciente"
+        alt="logo{{ paciente.nombre }} {{ paciente.apellido }}"
+      />
+      <span>{{ paciente.nombre }} {{ paciente.apellido }}</span>
+    </div>
+  </div>
+</div>
+<!-- FIN DEL FAB-BUTTON -->

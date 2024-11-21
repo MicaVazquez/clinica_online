@@ -27,3 +27,13 @@
   margin-top: 30px; /* Espacio arriba del título */
   margin-bottom: 20px; /* Espacio debajo del título */
 }
+
+.card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  color: #2a3663;
+}

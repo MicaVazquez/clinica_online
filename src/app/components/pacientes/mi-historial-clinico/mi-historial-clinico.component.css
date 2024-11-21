@@ -1,0 +1,48 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* INICIO DE MODIFICACION DE LA TABLA */
+table {
+  border-collapse: collapse;
+  /* background: #290824; */
+}
+
+th,
+td {
+  padding: 7px;
+  text-align: left;
+  border: 1px solid #ddd;
+  color: white;
+  background: #2a3663;
+}
+
+th {
+  background: rgb(14, 28, 28);
+}
+
+td {
+  background: #2a3663;
+}
+
+/* FIN DE MODIFICACION DE LA TABLA */
+
+/* INICIO DE MODIFICAION DEL SPINNER */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mat-progress-spinner {
+  width: 80px;
+  height: 80px;
+}

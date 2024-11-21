@@ -9,12 +9,15 @@ import { HistoriaClinicaService } from '../../../services/historia-clinica.servi
 import { AuthService } from '../../../services/auth.service';
 import { TurnoService } from '../../../services/turno.service';
 import Swal from 'sweetalert2';
-import { NgIf } from '@angular/common';
-
+import { NgFor, NgIf } from '@angular/common';
+import { FavButtonComponent } from '../../fav-button/fav-button.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-mis-pacientes',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, FavButtonComponent, NgFor, MatButtonModule, MatIconModule],
   templateUrl: './mis-pacientes.component.html',
   styleUrl: './mis-pacientes.component.css',
 })
@@ -32,7 +35,8 @@ export class MisPacientesComponent {
     private historiaClinicaService: HistoriaClinicaService,
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
-    private turnosService: TurnoService
+    private turnosService: TurnoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -184,5 +188,8 @@ export class MisPacientesComponent {
       console.log(valor);
     }
     this.cdr.detectChanges();
+  }
+  goTo() {
+    this.router.navigateByUrl('especialista');
   }
 }
